@@ -1,0 +1,47 @@
+<div class="modal-dialog modal-dialog-centered mx-auto" role="document">
+  <div class="modal-content">
+    <%= form_with(model: [Address.new], id: "add_address_form_#{municipe.id}", remote: true) do |f| %>
+      <div class="modal-header">
+        <h5 class="modal-title" id="addAddressModalLabel">Add Address for <%= municipe.name %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <%= f.label :cep %>
+          <%= f.text_field :cep, class: "form-control address_cep", placeholder: "CEP", required: true, maxlength: 9 %>
+        </div>
+        <div class="form-group">
+          <%= f.label :street %>
+          <%= f.text_field :street, class: "form-control", placeholder: "Street", required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :complement %>
+          <%= f.text_field :complement, class: "form-control", placeholder: "Complement" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :neighborhood %>
+          <%= f.text_field :neighborhood, class: "form-control", placeholder: "Neighborhood", required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :city %>
+          <%= f.text_field :city, class: "form-control", placeholder: "City", required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :uf %>
+          <%= f.select :uf, options_for_select(@states_uf), { include_blank: "Select UF" }, { class: "form-control", required: true } %>
+        </div>
+        <div class="form-group">
+          <%= f.label :ibge_code %>
+          <%= f.text_field :ibge_code, class: "form-control", placeholder: "IBGE Code" %>
+        </div>
+      </div>
+      <%= f.hidden_field :municipe_id, value: municipe.id %>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <%= f.submit "Save", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: postgres
+  password: root
+  port: 5432
+  pool: 5
+
+development:
+  <<: *default
+  database: municipes_teste_development
+
+test:
+  <<: *default
+  database: municipes_teste_test
+
+production:
+  <<: *default
+  database: municipes_teste_production

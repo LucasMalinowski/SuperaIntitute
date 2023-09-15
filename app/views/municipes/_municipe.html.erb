@@ -1,0 +1,76 @@
+<div class="col-4 mb-4">
+  <div class="card h-100">
+    <div class="card-body">
+      <div class="card-title d-flex ">
+        <h5 class="mr-auto"><%= municipe.name %></h5>
+        <h5>
+          <% if municipe.status == "Ativo" %>
+            <span class="badge bg-success"><%= municipe.status %></span>
+          <% elsif municipe.status == "Inativo" %>
+            <span class="badge bg-warning text-dark"><%= municipe.status %></span>
+          <% elsif municipe.status == "Suspenso" %>
+            <span class="badge bg-danger"><%= municipe.status %></span>
+          <% end %>
+        </h5>
+      </div>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <strong>Email:</strong> <%= municipe.email %>
+        </li>
+        <li class="list-group-item">
+          <strong>Data de nascimento:</strong> <%= municipe.birthday %>
+        </li>
+        <li class="list-group-item">
+          <strong>Telefone:</strong> <%= "#{municipe.country_code} #{municipe.phone}" %>
+        </li>
+        <li class="list-group-item">
+          <strong>Endereço:</strong>
+          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addAddressModal_<%= municipe.id %>">
+            <i class="fa fa-plus"></i>
+          </button>
+          <% municipe.addresses.limit(1).each do |address| %>
+            <p>
+              <%= address.street %>, <%= address.complement %>, <%= address.neighborhood %>, <%= address.city %>, <%= address.uf %>, <%= address.cep %>
+              <%= link_to address do
+                "<i class='fa fa-trash'></i>".html_safe
+              end %>
+            </p>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+    <div class="card-footer d-flex justify-content-end">
+      <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#showMunicipe<%= municipe.id %>">
+        <i class="fa fa-eye"></i>
+      </button>
+      <%= link_to edit_municipe_path(municipe), class: "btn btn-secondary me-2 mr-2" do %>
+        <i class="fa fa-pen"></i>
+      <% end %>
+      <%= link_to municipe, class: "btn btn-danger small" do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Address Modal -->
+<div class="modal fade" id="addAddressModal_<%= municipe.id %>" tabindex="-1" role="dialog" aria-labelledby="addAddressModalLabel" aria-hidden="true">
+  <%= render "address_modal", municipe: municipe %>
+</div>
+
+<!-- Show Modal -->
+<div class="modal fade" id="showMunicipe<%= municipe.id %>" tabindex="-1" role="dialog" aria-labelledby="showMunicipeLabel" aria-hidden="true">
+  <%= render "show_modal", municipe: municipe %>
+</div>
+
+<script>
+  $('.address_cep').each(function () {
+    $(this).on('keydown', function(){
+      let v = $(this).val();
+      v = v.replace(/\D/g, '');
+      v = v.replace(/^(\d{5})(\d)/, '$1-$2');
+      $(this).val(v);
+    })
+  });
+</script>

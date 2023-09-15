@@ -1,0 +1,101 @@
+<%= form_with(model: municipe) do |form| %>
+  <% if municipe.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(municipe.errors.count, "error") %> prohibited this municipe from being saved:</h2>
+
+      <ul>
+        <% municipe.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+    <div class="col-md-6">
+      <%= form.label "Nome" %>
+      <%= form.text_field :name, maxlength: 25, class: "form-control" %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :email %>
+      <%= form.text_field :email, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-6">
+      <%= form.label "CPF" %>
+      <%= form.text_field :cpf, placeholder: '___.___.___-__', maxlength: 14, class: "form-control" %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label "CNS (Cadastro Nacional de Saude)" %>
+      <%= form.text_field :cns, placeholder: '___ ____ ____ ____', maxlength: 18, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-6">
+      <%= form.label :birthday %>
+      <%= form.date_field :birthday, class: "form-control" %>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-4 pr-0">
+          <%= form.label "Pais", class: "small " %>
+          <%= form.select :country_code, @country_codes, { required: true }, class: "form-control" %>
+        </div>
+        <div class="col ">
+          <%= form.label :phone, class: "small" %>
+          <%= form.text_field :phone, maxlength: 15, placeholder: "(xx) xxxxx-xxxx", class: "form-control " %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-6">
+      <%= form.label "Foto" %>
+      <%= form.file_field :image, class: "form-control" %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :status %>
+      <%= form.select :status, @status, { include_blank: true }, class: "form-control" %>
+    </div>
+  </div>
+
+
+
+  <div class="form-group">
+    <%= form.submit "Save", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+
+<script>
+    $('#municipe_phone').on('keydown', function(){
+        let v = $(this).val();
+        v = v.replace(/\D/g,'');
+        v = v.replace(/^(\d{2})(\d)/g,'($1) $2');
+        v = v.replace(/(\d)(\d{4})$/,'$1-$2');
+        $(this).val(v);
+    })
+
+    $('#municipe_cpf').on('keydown', function(){
+        let v = $(this).val();
+        v = v.replace(/\D/g,'');
+        v = v.replace(/^(\d{3})(\d)/g,'$1.$2');
+        v = v.replace(/^(\d{3})\.(\d{3})(\d)/g,'$1.$2.$3');
+        v = v.replace(/(\d{3})(\d{1,2})$/,'$1-$2');
+        $(this).val(v);
+    })
+
+    $('#municipe_cns').on('keydown', function(){
+        let v = $(this).val();
+        v = v.replace(/\D/g,'');
+        v = v.replace(/^(\d{3})(\d)/g,'$1 $2');
+        v = v.replace(/^(\d{3})\s(\d{4})(\d)/g,'$1 $2 $3');
+        v = v.replace(/^(\d{3})\s(\d{4})\s(\d{4})(\d)/g,'$1 $2 $3 $4');
+        $(this).val(v);
+    })
+</script>

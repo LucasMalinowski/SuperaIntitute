@@ -1,0 +1,19 @@
+<div class="container">
+  <h1 class="text-center mb-5">Municipes</h1>
+
+  <% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <div class="row g-4">
+    <% @municipes.each do |municipe| %>
+      <%= render municipe %>
+    <% end %>
+  </div>
+
+  <div class="mt-5">
+    <%= link_to "New municipe", new_municipe_path, class: "btn btn-success" %>
+  </div>
+</div>

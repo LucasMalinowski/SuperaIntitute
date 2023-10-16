@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_192334) do
   end
 
   create_table "addresses", force: :cascade do |t|
-    t.string "cep"
+    t.integer "cep"
     t.string "street"
     t.string "complement"
     t.string "neighborhood"
@@ -55,15 +55,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_192334) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "admin_events", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.datetime "date"
-    t.string "location"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "admins_events", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -71,19 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_192334) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "municipes", force: :cascade do |t|
-    t.string "name"
-    t.string "cpf"
-    t.string "cns"
-    t.string "email"
-    t.date "birthday"
-    t.string "phone"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "country_code"
   end
 
   create_table "users", force: :cascade do |t|

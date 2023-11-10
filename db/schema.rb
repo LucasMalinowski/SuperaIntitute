@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_31_192334) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_24_122344) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_192334) do
   end
 
   create_table "addresses", force: :cascade do |t|
-    t.integer "cep"
+    t.string "cep"
     t.string "street"
     t.string "complement"
     t.string "neighborhood"
@@ -51,6 +51,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_192334) do
     t.string "uf"
     t.integer "ibge_code"
     t.integer "municipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "admin_events", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "date"
+    t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,6 +73,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_192334) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "admins_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_users_on_reset_password_token", unique: true
+  end
+
+  create_table "municipes", force: :cascade do |t|
+    t.string "name"
+    t.string "cpf"
+    t.string "cns"
+    t.string "email"
+    t.date "birthday"
+    t.string "phone"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "country_code"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -72,6 +106,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_192334) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "current_pass"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

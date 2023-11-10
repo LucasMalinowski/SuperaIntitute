@@ -1,4 +1,4 @@
-class Admins::EventsController < ApplicationController
+class Admins::EventsController < AdminsController
   layout 'admin_layout'
 
   before_action :set_admins_event, only: %i[ show edit update destroy ]

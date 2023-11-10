@@ -1,0 +1,60 @@
+<h1>Editando Usuario</h1>
+
+<%= form_with(model: @user, url: admins_update_user_path, method: :patch) do |form| %>
+
+  <div>
+    <%= form.label "Nome", style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+
+  <br>
+
+  <button type="button" id="toggleVisibility">Atualizar Senha</button>
+
+  <div>
+    <br>
+
+    <%= form.label "Senha", id: "passwordLabel", class: "hidden" %>
+    <%= form.text_field :password, class: "hidden", value: @user.current_pass %>
+  </div>
+  <div>
+    <%= form.label "Confirmação de senha", id: "confirmationLabel", class: "hidden" %>
+    <%= form.text_field :password_confirmation, class: "hidden", value: @user.current_pass %>
+  </div>
+
+  <div>
+    <%= form.submit "Atualizar Usuario" %>
+  </div>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Voltar para Usuarios", admins_users_path %>
+</div>
+
+
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
+
+<script>
+    document.getElementById('toggleVisibility').addEventListener('click', function() {
+        var passwordLabel = document.getElementById('passwordLabel');
+        var confirmationLabel = document.getElementById('confirmationLabel');
+        var passwordField = document.getElementById('user_password');
+        var confirmationField = document.getElementById('user_password_confirmation');
+
+        // Toggle visibility and editability
+        passwordField.classList.toggle('hidden');
+        confirmationField.classList.toggle('hidden');
+        passwordLabel.classList.toggle('hidden');
+        confirmationLabel.classList.toggle('hidden');
+    });
+</script>

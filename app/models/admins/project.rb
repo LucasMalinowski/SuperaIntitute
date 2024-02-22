@@ -1,7 +1,7 @@
-class Admins::Event < ApplicationRecord
+class Admins::Project < ApplicationRecord
   has_one_attached :image
 
-  validates :name,:description,:date, :location, presence: true
+  validates :name, :description,  :location, :contact, presence: true
 
   scope :upcoming, -> { where("date >= ?", Date.today) }
 

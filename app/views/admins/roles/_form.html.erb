@@ -1,0 +1,87 @@
+<%= form_with(model: admins_role) do |form| %>
+  <% if admins_role.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(admins_role.errors.count, "error") %> prohibited this admins_role from being saved:</h2>
+
+      <ul>
+        <% admins_role.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :company, style: "display: block" %>
+    <%= form.text_field :company %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :location, style: "display: block" %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div>
+    <%= form.label :salary, style: "display: block" %>
+    <%= form.text_field :salary, class: "salary-input", pattern: "[0-9]*", title: "Somente numeros" %>
+  </div>
+
+  <div>
+    <%= form.label :contact, style: "display: block" %>
+    <%= form.text_field :contact %>
+  </div>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :benefits, style: "display: block" %><br>
+    <% Admins::Role::POSSIBLE_BENEFITS.each do |benefit| %>
+      <%= form.check_box :benefits, { multiple: true }, benefit, nil %>
+      <%= form.label :benefits, benefit.humanize %><br>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :requirements, style: "display: block" %>
+    <%= form.text_field :requirements %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<script>
+    $(document).ready(function() {
+        $('.salary-input').on('input', function() {
+            if ($(this).val().charAt(0) != '$'){
+                $(this).val('$' + $(this).val());
+            } else {
+                $(this).val($(this).val());
+            }
+        });
+
+        $('.salary-input').on('blur', function() {
+            if ($(this).val().charAt(0) == '$'){
+                $(this).val($(this).val().substring(1));
+            } else {
+                $(this).val($(this).val());
+            }
+        });
+
+    });
+</script>
+

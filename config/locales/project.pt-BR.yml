@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      admins/project: Projeto
+    attributes:
+      admins/project:
+        name: Projeto
+        description: Descrição
+        location: Endereço
+        contact: Contato
+        created_at: Criado em
+        updated_at: Atualizado em
+        image: Imagem

@@ -1,6 +1,16 @@
 <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
+  <div class="index">
+    <div class="sidebar-header">
+      <%= link_to root_path do %>
+        <h3 class="text-center">Voltar para o Inicio</h3>
+      <% end %>
+    </div>
+  </div>
   <div class="sidebar-title">
-    <h2>Interface de Admin</h2>
+    <br>
+    <br>
+    <br>
+    <h3>Interface de Admin</h3>
   </div>
   <div class="position-sticky">
     <ul class="nav flex-column">
@@ -8,14 +18,10 @@
         <%= link_to "Eventos", admins_events_path, class: "nav-link sidebar-link"  %>
       </li>
       <li class="nav-item">
-        <a class="nav-link sidebar-link" href="#">
-          Vagas
-        </a>
+        <%= link_to "Vagas", admins_roles_path, class: "nav-link sidebar-link"  %>
       </li>
       <li class="nav-item">
-        <a class="nav-link sidebar-link" href="#">
-          Projetos
-        </a>
+        <%= link_to "Projetos", admins_projects_path, class: "nav-link sidebar-link"  %>
       </li>
       <li class="nav-item">
         <%= link_to "Usuários", admins_users_path, class: "nav-link sidebar-link"  %>

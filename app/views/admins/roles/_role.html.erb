@@ -1,34 +1,56 @@
-<div id="<%= dom_id event %>" class="card">
+<div id="<%= dom_id role %>" class="card">
   <p>
-    <strong>Nome:</strong>
-    <%= event.name %>
+    <strong>Vaga:</strong>
+    <%= role.name %>
   </p>
 
   <p>
     <strong>Descrição:</strong>
-    <%= event.description %>
+    <%= role.description %>
   </p>
 
   <p>
-    <strong>Data:</strong>
-    <%= I18n.l(event.date, format: :long) %>
-    <span class="<%= event.upcoming? ? 'green-text' : 'red-text' %>">
-      <%= event.upcoming? ? 'Ativo' : 'Passado' %>
-    </span>
+    <strong>Salário:</strong>
+    <%= number_to_currency(role.salary) %>
   </p>
 
   <p>
-    <strong>Localização:</strong>
-    <%= event.location %>
+    <strong>Contato:</strong>
+    <%= role.contact %>
+  </p>
+
+  <p>
+    <strong>Endereço:</strong>
+    <%= role.location %>
+  </p>
+
+  <p>
+    <strong>Empresa:</strong>
+    <%= role.company %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= role.email %>
+  </p>
+
+  <p>
+    <strong>Benefícios:</strong>
+    <%= role.benefits %>
+  </p>
+
+  <p>
+    <strong>Requisitos:</strong>
+    <%= role.requirements %>
   </p>
 </div>
-
 
 <div class="actions">
-  <%= link_to t('buttons.edit'), edit_admins_event_path(event), class: "action-button" %>
-  <%= link_to t('buttons.back_to_events'), admins_events_path, class: "action-button" %>
-  <%= button_to t('buttons.destroy'), event, method: :delete, data: { confirm: t('buttons.confirm_destroy') }, class: "action-button" %>
+  <%= link_to t('buttons.edit'), edit_admins_role_path(role), class: "action-button" %>
+  <%= link_to t('buttons.back_to_roles'), admins_roles_path, class: "action-button" %>
+  <%= button_to t('buttons.destroy'), role, method: :delete, data: { confirm: t('buttons.confirm_destroy') }, class: "action-button" %>
 </div>
+
 
 
 <style>

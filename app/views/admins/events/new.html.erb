@@ -1,9 +1,9 @@
-<h1>New event</h1>
+<h1>Novo evento</h1>
 
 <%= render "form", admins_event: @admins_event %>
 
 <br>
 
 <div>
-  <%= link_to "Back to events", admins_events_path %>
+  <%= link_to t('buttons.back_to_events'), admins_events_path, class: "action-button" %>
 </div>

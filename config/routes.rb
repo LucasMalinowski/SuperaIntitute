@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   get "admin", to: "admins#index"
   namespace :admins do
     resources :events
+    resources :roles
+    resources :projects
+
     get "users", to: "users#index"
     get "new_user", to: "users#new"
     post "create_user", to: "users#create"

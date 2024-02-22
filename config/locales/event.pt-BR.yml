@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      admins/event: Evento
+    attributes:
+      admins/event:
+        name: Nome
+        description: Descrição
+        date: Data
+        location: Local
+        created_at: Criado em
+        updated_at: Atualizado em
+        image: Imagem

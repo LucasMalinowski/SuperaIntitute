@@ -1,34 +1,40 @@
-<div id="<%= dom_id event %>" class="card">
+<div id="<%= dom_id project %>" class="card">
   <p>
     <strong>Nome:</strong>
-    <%= event.name %>
+    <%= project.name %>
   </p>
 
   <p>
     <strong>Descrição:</strong>
-    <%= event.description %>
+    <%= project.description %>
   </p>
 
   <p>
     <strong>Data:</strong>
-    <%= I18n.l(event.date, format: :long) %>
-    <span class="<%= event.upcoming? ? 'green-text' : 'red-text' %>">
-      <%= event.upcoming? ? 'Ativo' : 'Passado' %>
+    <%= I18n.l(project.date, format: :long) %>
+    <span class="<%= project.upcoming? ? 'green-text' : 'red-text' %>">
+      <%= project.upcoming? ? 'Ativo' : 'Passado' %>
     </span>
   </p>
 
   <p>
     <strong>Localização:</strong>
-    <%= event.location %>
+    <%= project.location %>
   </p>
-</div>
 
+  <p>
+    <strong>Contato:</strong>
+    <%= project.contact %>
+  </p>
+
+</div>
 
 <div class="actions">
-  <%= link_to t('buttons.edit'), edit_admins_event_path(event), class: "action-button" %>
-  <%= link_to t('buttons.back_to_events'), admins_events_path, class: "action-button" %>
-  <%= button_to t('buttons.destroy'), event, method: :delete, data: { confirm: t('buttons.confirm_destroy') }, class: "action-button" %>
+  <%= link_to t('buttons.edit'), edit_admins_project_path(project), class: "action-button" %>
+  <%= link_to t('buttons.back_to_projects'), admins_projects_path, class: "action-button" %>
+  <%= button_to t('buttons.destroy'), project, method: :delete, data: { confirm: t('buttons.confirm_destroy') }, class: "action-button" %>
 </div>
+
 
 
 <style>

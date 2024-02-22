@@ -1,0 +1,18 @@
+pt-BR:
+  activerecord:
+    models:
+      admins/role: Vaga
+    attributes:
+      admins/role:
+        name: Vaga
+        description: Descrição
+        location: Endereço
+        salary: Salário
+        contact: Contato
+        email: Email
+        benefits: Benefícios
+        requirements: Requisitos
+        company: Empresa
+        created_at: Criado em
+        updated_at: Atualizado em
+        image: Imagem

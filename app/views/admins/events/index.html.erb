@@ -1,14 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Events</h1>
-<%= link_to "New event", new_admins_event_path %>
+<h1>Eventos</h1>
+<%= link_to "Novo evento", new_admins_event_path %>
 
 <div id="admins_events">
   <% @admins_events.each do |admins_event| %>
     <%= render admins_event %>
-    <p>
-      <%= link_to "Show this event", admins_event %>
-    </p>
   <% end %>
 </div>
 

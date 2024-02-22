@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Vagas</h1>
+<%= link_to "Nova vaga", new_admins_role_path %>
+
+<div id="admins_roles">
+  <% @admins_roles.each do |admins_role| %>
+    <%= render admins_role %>
+  <% end %>
+</div>
+

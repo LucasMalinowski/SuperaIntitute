@@ -10,12 +10,12 @@ default: &default
 
 development:
   <<: *default
-  database: municipes_teste_development
+  database: supera_institute_development
 
 test:
   <<: *default
-  database: municipes_teste_test
+  database: supera_institute_test
 
 production:
   <<: *default
-  database: municipes_teste_production
+  database: supera_institute_production

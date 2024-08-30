@@ -1,0 +1,47 @@
+<section class="projects section-padding" id="projects">
+  <div class="container">
+    <div class="section-title text-center">
+      <span class="title">Projetos</span>
+      <h2 class="sub-title">Próximos Projetos</h2>
+    </div>
+    <div class="row">
+      <% @projects&.each do |project| %>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title text-dark"><%= project.name %></h3>
+              <p class="card-text text-dark"><%= project.location %></p>
+              <ul class="list-unstyled text-dark">
+                <li><%= project.description %></li>
+                <li><%= I18n.l(project.date, format: :short) %></li>
+              </ul>
+              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#projectModal<%= project.id %>">+ informações</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="projectModal<%= project.id %>" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel<%= project.id %>" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content text-dark">
+              <div class="modal-header">
+                <h5 class="modal-title text-dark" id="projectModalLabel<%= project.id %>"><%= project.name %></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p><strong>Localização:</strong> <%= project.location %></p>
+                <p><strong>Data:</strong> <%= I18n.l(project.date, format: :long) %></p>
+                <p><strong>Descrição:</strong> <%= project.description %></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

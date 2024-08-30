@@ -167,6 +167,13 @@ img{
 }
 
 
+.collapse {
+  display: flex;
+  &:not(.show) {
+    display: none;
+  }
+}
+
 
 
 /* button */

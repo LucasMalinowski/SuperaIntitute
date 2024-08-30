@@ -19,11 +19,11 @@
     <br>
 
     <%= form.label "Senha", id: "passwordLabel", class: "hidden" %>
-    <%= form.text_field :password, class: "hidden", value: @user.current_pass %>
+    <%= form.text_field :password, class: "hidden", value: @user.password %>
   </div>
   <div>
     <%= form.label "Confirmação de senha", id: "confirmationLabel", class: "hidden" %>
-    <%= form.text_field :password_confirmation, class: "hidden", value: @user.current_pass %>
+    <%= form.text_field :password_confirmation, class: "hidden", value: @user.password %>
   </div>
 
   <div>

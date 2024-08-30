@@ -1,32 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MunicipesTeste</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    
-    <%= javascript_include_tag 'main.js' %>
-    <%= javascript_include_tag 'style.switcher.js' %>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />  </head>
+<head>
+  <title>MunicipesTeste</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+  <!-- Updated jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-  <body class="t-dark">
+  <!-- Popper.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-thin.css">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-solid.css">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-regular.css">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-light.css">
+
+  <!-- Bootstrap JS (including Popper.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag 'main.js' %>
+  <%= javascript_include_tag 'style.switcher.js' %>
+  <%= javascript_importmap_tags %>
+</head>
+
+
+
+<body class="t-dark">
   <div class="page-wrapper">
+    <p class=”notice”><%= notice %></p>
+    <p class=”alert”><%= alert %></p>
+
     <%= render "layouts/navbar" %>
     <%= render "layouts/hero" %>
     <%= render "layouts/vagas" %>
     <%= render "layouts/eventos" %>
+    <%= render "layouts/projetos" %>
     <%= render "layouts/about" %>
     <%= render "layouts/footer" %>
 
     <%= yield %>  
     </div>
   </body>
+
+<script>
+  document.querySelectorAll('a.nav-link[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+
+</script>
 </html>
 
 

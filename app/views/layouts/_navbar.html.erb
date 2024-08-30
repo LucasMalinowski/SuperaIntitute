@@ -4,34 +4,30 @@
         <%= image_tag("logo1.png", alt: "Logo", height: 45) %>
     </a>
     <!-- Toggle button -->
-    <button class="navbar-toggler text-white" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-    </button>
+  <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-bars"></i>
+  </button>
 
     <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse" id="navbarButtonsExample">
+    <div class="collapse navbar-collapse flex-md-row flex-column justify-content-center" id="navbarButtonsExample">
         <!-- Centered links -->
-        <ul class="navbar-nav mx-auto">
-            <!-- Links -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">Projetos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Eventos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Vagas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contato</a>
-            </li>
-        </ul>
+
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#projects">Projetos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#events">Eventos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#vagas">Vagas</a>
+        </li>
+      </ul>
         <!-- Centered links -->
 
         <!-- Social Media Links -->
-        <div class="social-links">
-            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <div class="social-links d-flex">
+            <a href="https://www.facebook.com/InstSupera" title="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com/supera.instituto/" title="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://www.youtube.com/channel/UCyZ1VQNFMnoY4LvXq2Zv9yA" title="YouTube"><i class="fab fa-youtube"></i></a>
             <% if user_signed_in? %>

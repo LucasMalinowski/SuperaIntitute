@@ -13,7 +13,6 @@ class Admins::UsersController < AdminsController
 
   def create
       @user = User.new(user_params)
-      @user.current_pass = params[:user][:password]
 
       if @user.save
         redirect_to admins_users_path
@@ -31,7 +30,6 @@ class Admins::UsersController < AdminsController
       @user = User.find(params[:id])
 
       if @user.update(user_params)
-        @user.current_pass = params[:user][:password]
         @user.save
         redirect_to admins_users_path
       else

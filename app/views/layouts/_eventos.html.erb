@@ -1,27 +1,47 @@
-<section class="pricing section-padding" id="pricing">
-<div class="container">
-  <div class="section-title">
-    <span class="title">Eventos</span>
-    <h2 class="sub-title">Próximos eventos</h2>
-  </div>
-    <div class="grid">
-      <% @events.each do |event| %>
-        <div class="pricing-item">
-          <div class="pricing-header">
-            <h3><%= event.name %></h3>
-            <div class="price"><span><%= event.location %></span></div>
+<section class="events section-padding" id="events">
+  <div class="container">
+    <div class="section-title text-center">
+      <span class="title">Eventos</span>
+      <h2 class="sub-title">Próximos Eventos</h2>
+    </div>
+    <div class="row">
+      <% @events&.each do |event| %>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title text-dark"><%= event.name %></h3>
+              <p class="card-text text-dark"><%= event.location %></p>
+              <ul class="list-unstyled text-dark">
+                <li><%= event.description %></li>
+                <li><%= I18n.l(event.date, format: :short) %></li>
+              </ul>
+              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#eventModal<%= event.id %>">+ informações</a>
+            </div>
           </div>
-          <div class="pricing-body">
-            <ul class="feature-list">
-              <li><%= event.description %></li>
-              <li><%= I18n.l(event.date, format: :short) %></li>
-            </ul>
-          </div>
-          <div class="pricing-footer">
-            <a href="#" class="btn" >+ informações</a>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="eventModal<%= event.id %>" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel<%= event.id %>" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content text-dark">
+              <div class="modal-header">
+                <h5 class="modal-title text-dark" id="eventModalLabel<%= event.id %>"><%= event.name %></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p><strong>Localização:</strong> <%= event.location %></p>
+                <p><strong>Data:</strong> <%= I18n.l(event.date, format: :long) %></p>
+                <p><strong>Descrição:</strong> <%= event.description %></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
     </div>
-</div>
+  </div>
 </section>

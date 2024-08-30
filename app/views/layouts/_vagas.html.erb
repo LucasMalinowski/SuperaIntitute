@@ -1,32 +1,56 @@
-<section class="pricing section-padding" id="pricing">
-<div class="container">
-  <div class="section-title">
-    <span class="title">vagas</span>
-    <h2 class="sub-title">vagas disponíveis</h2>
-  </div>
-    <div class="grid">
-      <% @roles.each do |role| %>
-        <div class="pricing-item">
-          <div class="pricing-header">
-            <h3><%= role.name %></h3>
-            <div class="price"><span> <%= number_to_currency(role.salary) %></span><%= role.company %></div>
-          </div>
-          <div class="pricing-body">
-            <% JSON.parse(role.benefits).each_with_index do |benefit, index| %>
-              <ul>
-                <% if index == 3 %>
-                  <li><i class="fas fa-check"></i>...</li>
-                <% elsif index < 3 %>
+<section class="vagas section-padding" id="vagas">
+  <div class="container">
+    <div class="section-title text-center">
+      <span class="title">Vagas</span>
+      <h2 class="sub-title">Vagas Disponíveis</h2>
+    </div>
+    <div class="row">
+      <% @roles&.each do |role| %>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body text-dark">
+              <h3 class="card-title text-dark"><%= role.name %></h3>
+              <p class="card-text"><%= number_to_currency(role.salary) %> - <%= role.company %></p>
+              <ul class="list-unstyled">
+                <% JSON.parse(role.benefits).first(3).each do |benefit| %>
                   <li><i class="fas fa-check"></i> <%= benefit %></li>
                 <% end %>
+                <% if JSON.parse(role.benefits).length > 3 %>
+                  <li><i class="fas fa-check"></i> ...</li>
+                <% end %>
               </ul>
-            <% end %>
+              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#roleModal<%= role.id %>">+ informações</a>
+            </div>
           </div>
-          <div class="pricing-footer">
-            <a href="#" class="btn" >+ informações</a>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="roleModal<%= role.id %>" tabindex="-1" role="dialog" aria-labelledby="roleModalLabel<%= role.id %>" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content text-dark">
+              <div class="modal-header">
+                <h5 class="modal-title text-dark" id="roleModalLabel<%= role.id %>"><%= role.name %></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p><strong>Salário:</strong> <%= number_to_currency(role.salary) %></p>
+                <p><strong>Empresa:</strong> <%= role.company %></p>
+                <p><strong>Benefícios:</strong></p>
+                <ul>
+                  <% JSON.parse(role.benefits).each do |benefit| %>
+                    <li><%= benefit %></li>
+                  <% end %>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
     </div>
-</div>
+  </div>
 </section>

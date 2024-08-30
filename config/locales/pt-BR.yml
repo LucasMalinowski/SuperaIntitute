@@ -1,5 +1,13 @@
 ---
 pt-BR:
+  devise:
+    registrations:
+      user:
+        signed_up: 'Bem-vindo! Você se registrou com sucesso.'
+    sessions:
+      user:
+        signed_in: 'Logado com sucesso.'
+
   activerecord:
     errors:
       messages:

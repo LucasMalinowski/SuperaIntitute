@@ -1,21 +1,16 @@
 <section class="home" id="home">
-    <div class="container">
-      <div class="grid">
-        <div class="home-text">
-          <h1>Instituto Supera: Desenvolvendo Talentos Para o Futuro</h1>
-          <p>Conectando talentos a oportunidades! 🌟 <br>
-            Eventos, empregos e ações sociais. 🌐 <br>
-            Junte-se ao futuro agora! 🚀🤝 </p>
-          <div class="btn-wrap">
-            <a href="#about" class="btn"> Saiba mais</a>
-          </div>
-        </div>
-        <div class="home-img">
-          <div class="circle-wrap">
-            <div class="circle"></div>
-          </div>
-          <%= image_tag("hero.png", alt: "img") %>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 text-center text-md-left">
+        <h1>Instituto Supera: Desenvolvendo Talentos Para o Futuro</h1>
+        <p>Conectando talentos a oportunidades! 🌟 <br>Eventos, empregos e ações sociais. 🌐 <br>Junte-se ao futuro agora! 🚀🤝</p>
+        <a href="#about" class="btn btn-primary">Saiba mais</a>
+      </div>
+      <div class="col-md-6 text-center">
+        <div class="circle-wrap mb-4 mb-md-0">
+          <%= image_tag("hero.png", alt: "img", class: "img-fluid") %>
         </div>
       </div>
     </div>
+  </div>
 </section>

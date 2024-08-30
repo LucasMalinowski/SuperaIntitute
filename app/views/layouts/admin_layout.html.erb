@@ -18,8 +18,8 @@
 
 <body>
     <div class="body">
-      <%= render "admins/sidebar_partial" %>
-      <div class="yeld">
+      <%= render "admins/sidebar_partial" if user_signed_in?%>
+      <div class="yield">
         <%= yield %>
       </div>
     </div>
@@ -28,32 +28,39 @@
 
 
 <style>
-  .yeld{
-      width: 100%;
-      padding: 0 10%;
+  body {
+    background-color: #f8f9fa;
   }
-    .body {
-        display: flex;
-        flex-direction: row;
-    }
-    body {
-        background-color: #f8f9fa;
-    }
-    #sidebar {
-        background-color: #343a40;
-        color: #ffffff;
-        height: 100vh;
-        padding-top: 5%; /* Add some padding to the top */
-    }
-    #content {
-        padding: 20px;
-    }
-    .sidebar-link {
-        color: #ffffff;
-        text-decoration: none;
-    }
-    .sidebar-link:hover {
-        color: #ffffff;
-        text-decoration: none;
-    }
+
+  #sidebar {
+    background-color: #343a40;
+    color: #ffffff;
+    height: 100vh;
+    padding-top: 5%;
+  }
+
+  #content {
+    padding: 20px;
+  }
+
+  .sidebar-link {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .sidebar-link:hover {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .yield {
+    width: 100%;
+    padding: 0 10%;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: row;
+  }
+
 </style>

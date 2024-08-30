@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions"}
   get "admin", to: "admins#index"
   namespace :admins do
     resources :events
@@ -12,6 +13,5 @@ Rails.application.routes.draw do
     patch "update_user/:id", to: "users#update", as: "update_user"
     get "destroy_user/:id", to: "users#destroy", as: "destroy_user"
   end
-  devise_for :users
   root 'main#index'
 end

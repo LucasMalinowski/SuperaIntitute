@@ -7,106 +7,107 @@
   <title>Admin Interface</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
   <style>
-      body {
-          background-color: #f8f9fa;
-      }
+    body {
+      background-color: #f8f9fa;
+    }
 
-      #sidebar {
-          background-color: #343a40;
-          color: #ffffff;
-          height: 100vh;
-          padding-top: 5%;
-          /* Add some padding to the top */
-      }
+    #sidebar {
+      background-color: #343a40;
+      color: #ffffff;
+      height: 100vh;
+      padding-top: 5%;
+    }
 
-      #content {
-          padding: 20px;
-      }
+    #content {
+      padding: 20px;
+    }
 
-      .link {
-          color: rgba(0, 0, 0, 0.98);
-          text-decoration: none;
-      }
+    .link {
+      color: rgba(0, 0, 0, 0.98);
+      text-decoration: none;
+    }
 
-      .link:hover {
-          color: #000000;
-          text-decoration: none;
-      }
+    .link:hover {
+      color: #000000;
+      text-decoration: none;
+    }
 
-      .card {
-          background-color: #fff;
-          border: 1px solid #ddd;
-          border-radius: 8px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          margin: 16px auto;
-          padding: 16px;
-          max-width: 400px;
-      }
+    .card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 16px auto;
+      padding: 16px;
+      max-width: 400px;
+    }
 
-      h2 {
-          font-size: 1.5em;
-          margin-bottom: 12px;
-      }
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 12px;
+    }
 
-      p {
-          margin: 8px 0;
-      }
+    p {
+      margin: 8px 0;
+    }
 
-      strong {
-          font-weight: bold;
-      }
+    strong {
+      font-weight: bold;
+    }
 
-      .actions {
-          display: flex;
-          justify-content: space-between;
-          margin: 16px auto;
-          max-width: 400px;
-      }
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      margin: 16px auto;
+      max-width: 400px;
+    }
 
-      .action-button {
-          background-color: #3498db;
-          border: none;
-          color: #fff;
-          cursor: pointer;
-          font-size: 14px;
-          margin: 0;
-          padding: 8px 16px;
-          text-align: center;
-          text-decoration: none;
-      }
+    .action-button {
+      background-color: #3498db;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      margin: 0;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+    }
 
-      .action-button:hover {
-          background-color: #2980b9;
-      }
+    .action-button:hover {
+      background-color: #2980b9;
+    }
 
-      .green-text {
-          color: green;
-      }
+    .green-text {
+      color: green;
+    }
 
-      .red-text {
-          color: red;
-      }
+    .red-text {
+      color: red;
+    }
   </style>
 </head>
 
 <body>
-<div id="content">
-  <div class="card">
-    <h2>Selecione a opção desejada</h2>
-    <ul>
-      <li class="nav-item">
-        <%= link_to "Eventos", admins_events_path, class: "nav-link link"  %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Vagas", admins_roles_path, class: "nav-link link"  %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Projetos", admins_projects_path, class: "nav-link link"  %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Usuários", admins_users_path, class: "nav-link link"  %>
-      </li>
-    </ul>
+<div class="d-flex">
+  <div id="content" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <div class="card">
+      <h2 class="text-center">Selecione a opção desejada</h2>
+      <ul class="list-unstyled">
+        <li class="nav-item">
+          <%= link_to "Eventos", admins_events_path, class: "nav-link link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Vagas", admins_roles_path, class: "nav-link link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Projetos", admins_projects_path, class: "nav-link link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Usuários", admins_users_path, class: "nav-link link" %>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 </body>

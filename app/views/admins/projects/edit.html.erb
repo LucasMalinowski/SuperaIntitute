@@ -2,9 +2,7 @@
 
 <%= render "form", admins_project: @admins_project %>
 
-<br>
-
-<div>
-  <%= link_to "Mostrar Evento", @admins_project %> |
-  <%= link_to "Volta aos Eventos", admins_projects_path %>
+<div class="mt-4">
+	<%= link_to "Mostrar Projeto", @admins_project, class: "btn btn-outline-secondary me-2" %>
+	<%= link_to "Voltar para Projetos", admins_projects_path, class: "btn btn-outline-secondary" %>
 </div>

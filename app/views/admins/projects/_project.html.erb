@@ -1,101 +1,20 @@
-<div id="<%= dom_id project %>" class="card">
-  <p>
-    <strong>Nome:</strong>
-    <%= project.name %>
-  </p>
+<div id="<%= dom_id project %>" class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Nome:</strong> <%= project.name %></h5>
 
-  <p>
-    <strong>Descrição:</strong>
-    <%= project.description %>
-  </p>
+    <p><strong>Descrição:</strong> <%= project.description %></p>
+    <p><strong>Data:</strong> <%= I18n.l(project.date, format: :long) %>
+      <span class="<%= project.upcoming? ? 'text-success' : 'text-danger' %>">
+        <%= project.upcoming? ? 'Ativo' : 'Passado' %>
+      </span>
+    </p>
+    <p><strong>Localização:</strong> <%= project.location %></p>
+    <p><strong>Contato:</strong> <%= project.contact %></p>
+  </div>
 
-  <p>
-    <strong>Data:</strong>
-    <%= I18n.l(project.date, format: :long) %>
-    <span class="<%= project.upcoming? ? 'green-text' : 'red-text' %>">
-      <%= project.upcoming? ? 'Ativo' : 'Passado' %>
-    </span>
-  </p>
-
-  <p>
-    <strong>Localização:</strong>
-    <%= project.location %>
-  </p>
-
-  <p>
-    <strong>Contato:</strong>
-    <%= project.contact %>
-  </p>
-
+  <div class="card-footer d-flex justify-content-between">
+    <%= link_to t('buttons.edit'), edit_admins_project_path(project), class: "btn btn-warning btn-sm" %>
+    <%= link_to t('buttons.back_to_projects'), admins_projects_path, class: "btn btn-outline-secondary btn-sm" %>
+    <%= button_to t('buttons.destroy'), project, method: :delete, data: { confirm: t('buttons.confirm_destroy') }, class: "btn btn-danger btn-sm" %>
+  </div>
 </div>
-
-<div class="actions">
-  <%= link_to t('buttons.edit'), edit_admins_project_path(project), class: "action-button" %>
-  <%= link_to t('buttons.back_to_projects'), admins_projects_path, class: "action-button" %>
-  <%= button_to t('buttons.destroy'), project, method: :delete, data: { confirm: t('buttons.confirm_destroy') }, class: "action-button" %>
-</div>
-
-
-
-<style>
-    body {
-        background-color: #f8f8f8;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-
-    .card {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin: 16px auto;
-        padding: 16px;
-        max-width: 400px;
-    }
-
-    h2 {
-        font-size: 1.5em;
-        margin-bottom: 12px;
-    }
-
-    p {
-        margin: 8px 0;
-    }
-
-    strong {
-        font-weight: bold;
-    }
-
-    .actions {
-        display: flex;
-        justify-content: space-between;
-        margin: 16px auto;
-        max-width: 400px;
-    }
-
-    .action-button {
-        background-color: #3498db;
-        border: none;
-        color: #fff;
-        cursor: pointer;
-        font-size: 14px;
-        margin: 0;
-        padding: 8px 16px;
-        text-align: center;
-        text-decoration: none;
-    }
-
-    .action-button:hover {
-        background-color: #2980b9;
-    }
-
-    .green-text {
-        color: green;
-    }
-
-    .red-text {
-        color: red;
-    }
-</style>

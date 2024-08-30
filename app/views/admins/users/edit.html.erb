@@ -1,7 +1,6 @@
-<h1>Editando Usuario</h1>
+<h1>Editando Usuário</h1>
 
 <%= form_with(model: @user, url: admins_update_user_path, method: :patch) do |form| %>
-
   <div>
     <%= form.label "Nome", style: "display: block" %>
     <%= form.text_field :name %>
@@ -19,22 +18,22 @@
     <br>
 
     <%= form.label "Senha", id: "passwordLabel", class: "hidden" %>
-    <%= form.text_field :password, class: "hidden", value: @user.password %>
+    <%= form.text_field :password, id: "user_password", class: "hidden", value: @user.password %>
   </div>
   <div>
     <%= form.label "Confirmação de senha", id: "confirmationLabel", class: "hidden" %>
-    <%= form.text_field :password_confirmation, class: "hidden", value: @user.password %>
+    <%= form.text_field :password_confirmation, id: "user_password_confirmation", class: "hidden", value: @user.password %>
   </div>
 
   <div>
-    <%= form.submit "Atualizar Usuario" %>
+    <%= form.submit "Atualizar Usuário" %>
   </div>
 <% end %>
 
 <br>
 
 <div>
-  <%= link_to "Voltar para Usuarios", admins_users_path %>
+  <%= link_to "Voltar para Usuários", admins_users_path %>
 </div>
 
 

@@ -1,8 +1,7 @@
-<%= form_with(model: admins_project) do |form| %>
+<%= form_with(model: admins_project, local: true) do |form| %>
   <% if admins_project.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(admins_project.errors.count, "error") %> prohibited this admins_project from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <h2><%= pluralize(admins_project.errors.count, "erro") %> impedem este projeto de ser salvo:</h2>
       <ul>
         <% admins_project.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,32 +10,32 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, class: "form-control", rows: 3, required: true %>
   </div>
 
-  <div>
-    <%= form.label :location, style: "display: block" %>
-    <%= form.text_field :location %>
+  <div class="mb-3">
+    <%= form.label :location, class: "form-label" %>
+    <%= form.text_field :location, class: "form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.date_field :date %>
+  <div class="mb-3">
+    <%= form.label :date, class: "form-label" %>
+    <%= form.date_field :date, class: "form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.label :contact, style: "display: block" %>
-    <%= form.text_field :contact %>
+  <div class="mb-3">
+    <%= form.label :contact, class: "form-label" %>
+    <%= form.text_field :contact, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="d-grid">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

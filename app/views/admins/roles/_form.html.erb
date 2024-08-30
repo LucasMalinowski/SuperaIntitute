@@ -1,8 +1,7 @@
-<%= form_with(model: admins_role) do |form| %>
+<%= form_with(model: admins_role, local: true) do |form| %>
   <% if admins_role.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(admins_role.errors.count, "error") %> prohibited this admins_role from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <h2><%= pluralize(admins_role.errors.count, "erro") %> impedem esta vaga de ser salva:</h2>
       <ul>
         <% admins_role.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,77 +10,72 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.label :company, style: "display: block" %>
-    <%= form.text_field :company %>
+  <div class="mb-3">
+    <%= form.label :company, class: "form-label" %>
+    <%= form.text_field :company, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, class: "form-control", rows: 3 %>
   </div>
 
-  <div>
-    <%= form.label :location, style: "display: block" %>
-    <%= form.text_field :location %>
+  <div class="mb-3">
+    <%= form.label :location, class: "form-label" %>
+    <%= form.text_field :location, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :salary, style: "display: block" %>
-    <%= form.text_field :salary, class: "salary-input", pattern: "[0-9]*", title: "Somente numeros" %>
+  <div class="mb-3">
+    <%= form.label :salary, class: "form-label" %>
+    <%= form.text_field :salary, class: "form-control salary-input", pattern: "[0-9]*", title: "Somente números" %>
   </div>
 
-  <div>
-    <%= form.label :contact, style: "display: block" %>
-    <%= form.text_field :contact %>
+  <div class="mb-3">
+    <%= form.label :contact, class: "form-label" %>
+    <%= form.text_field :contact, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+  <div class="mb-3">
+    <%= form.label :email, class: "form-label" %>
+    <%= form.text_field :email, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :benefits, style: "display: block" %><br>
+  <div class="mb-3">
+    <%= form.label :benefits, class: "form-label" %><br>
     <% Admins::Role::POSSIBLE_BENEFITS.each do |benefit| %>
       <%= form.check_box :benefits, { multiple: true }, benefit, nil %>
       <%= form.label :benefits, benefit.humanize %><br>
     <% end %>
   </div>
 
-  <div>
-    <%= form.label :requirements, style: "display: block" %>
-    <%= form.text_field :requirements %>
+  <div class="mb-3">
+    <%= form.label :requirements, class: "form-label" %>
+    <%= form.text_field :requirements, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="d-grid">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
 
 <script>
-    $(document).ready(function() {
-        $('.salary-input').on('input', function() {
-            if ($(this).val().charAt(0) != '$'){
-                $(this).val('$' + $(this).val());
-            } else {
-                $(this).val($(this).val());
-            }
-        });
-
-        $('.salary-input').on('blur', function() {
-            if ($(this).val().charAt(0) == '$'){
-                $(this).val($(this).val().substring(1));
-            } else {
-                $(this).val($(this).val());
-            }
-        });
-
+  $(document).ready(function() {
+    $('.salary-input').on('input', function() {
+      if ($(this).val().charAt(0) != '$'){
+        $(this).val('$' + $(this).val());
+      }
     });
-</script>
 
+    $('.salary-input').on('blur', function() {
+      if ($(this).val().charAt(0) == '$'){
+        $(this).val($(this).val().substring(1));
+      }
+    });
+
+  });
+</script>

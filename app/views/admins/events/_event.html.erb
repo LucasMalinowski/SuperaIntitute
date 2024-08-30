@@ -1,95 +1,18 @@
-<div id="<%= dom_id event %>" class="card">
-  <p>
-    <strong>Nome:</strong>
-    <%= event.name %>
-  </p>
-
-  <p>
-    <strong>Descrição:</strong>
-    <%= event.description %>
-  </p>
-
-  <p>
-    <strong>Data:</strong>
-    <%= I18n.l(event.date, format: :long) %>
-    <span class="<%= event.upcoming? ? 'green-text' : 'red-text' %>">
-      <%= event.upcoming? ? 'Ativo' : 'Passado' %>
-    </span>
-  </p>
-
-  <p>
-    <strong>Localização:</strong>
-    <%= event.location %>
-  </p>
+<div id="<%= dom_id event %>" class="card mb-3 mt-5">
+  <div class="card-body">
+    <p><strong>Nome:</strong> <%= event.name %></p>
+    <p><strong>Descrição:</strong> <%= event.description %></p>
+    <p>
+      <strong>Data:</strong> <%= I18n.l(event.date, format: :long) %>
+      <span class="<%= event.upcoming? ? 'text-success' : 'text-danger' %>">
+        <%= event.upcoming? ? 'Ativo' : 'Passado' %>
+      </span>
+    </p>
+    <p><strong>Localização:</strong> <%= event.location %></p>
+  </div>
 </div>
 
-
-<div class="actions">
-  <%= link_to t('buttons.edit'), edit_admins_event_path(event), class: "action-button" %>
-  <%= link_to t('buttons.back_to_events'), admins_events_path, class: "action-button" %>
-  <%= button_to t('buttons.destroy'), event, method: :delete, data: { confirm: t('buttons.confirm_destroy') }, class: "action-button" %>
+<div class="actions d-flex">
+  <%= link_to t('buttons.edit'), edit_admins_event_path(event), class: "btn btn-dark mx-3" %>
+  <%= button_to t('buttons.destroy'), event, method: :delete, data: { confirm: t('buttons.confirm_destroy') }, class: "btn btn-danger" %>
 </div>
-
-
-<style>
-    body {
-        background-color: #f8f8f8;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-
-    .card {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin: 16px auto;
-        padding: 16px;
-        max-width: 400px;
-    }
-
-    h2 {
-        font-size: 1.5em;
-        margin-bottom: 12px;
-    }
-
-    p {
-        margin: 8px 0;
-    }
-
-    strong {
-        font-weight: bold;
-    }
-
-    .actions {
-        display: flex;
-        justify-content: space-between;
-        margin: 16px auto;
-        max-width: 400px;
-    }
-
-    .action-button {
-        background-color: #3498db;
-        border: none;
-        color: #fff;
-        cursor: pointer;
-        font-size: 14px;
-        margin: 0;
-        padding: 8px 16px;
-        text-align: center;
-        text-decoration: none;
-    }
-
-    .action-button:hover {
-        background-color: #2980b9;
-    }
-
-    .green-text {
-        color: green;
-    }
-
-    .red-text {
-        color: red;
-    }
-</style>

@@ -1,12 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Usuarios</h1>
-<%= link_to "New User", admins_new_user_path %>
+<h1>Usuários</h1>
+<%= link_to "Novo Usuário", admins_new_user_path %>
 
 <div id="admins_users">
-  <% @users.each do |user| %>
-    <%= render user %>
-
-  <% end %>
+	<% @users.each do |user| %>
+		<%= render user %>
+	<% end %>
 </div>
 
+<div>
+	<%= link_to "Voltar para Usuários", admins_users_path %>
+</div>

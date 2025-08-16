@@ -1,0 +1,24 @@
+<% content_for :title, @event.name %>
+
+<section class="py-8">
+  <div class="container mx-auto max-w-3xl">
+    <div class="card">
+      <% if @event.image.attached? %>
+        <%= image_tag @event.image.variant(resize_to_limit: [900, 500]), class: 'w-full h-64 object-cover' %>
+      <% end %>
+      <div class="p-6">
+        <h1 class="text-3xl font-bold mb-4"><%= @event.name %></h1>
+        <p class="text-gray-600 dark:text-gray-400 mb-2">
+          <time datetime="<%= @event.starts_at.iso8601 %>"><%= l(@event.starts_at, format: :long) %></time>
+          –
+          <time datetime="<%= @event.ends_at.iso8601 %>"><%= l(@event.ends_at, format: :long) %></time>
+        </p>
+        <p class="mb-4"><%= simple_format(@event.description.body.to_s) %></p>
+        <p class="font-semibold"><%= @event.location %></p>
+      </div>
+    </div>
+    <div class="mt-6">
+      <%= link_to t('navigation.events'), events_path, class: 'btn-secondary' %>
+    </div>
+  </div>
+</section>

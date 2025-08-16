@@ -1,0 +1,37 @@
+<%= form_with model: [:admin, event], data: { turbo_frame: 'admin_events' }, class: 'space-y-6' do |f| %>
+  <div>
+    <%= f.label :name, class: 'block font-medium text-gray-700 dark:text-gray-300' %>
+    <%= f.text_field :name, required: true, class: 'mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:text-gray-100' %>
+  </div>
+
+  <div>
+    <%= f.label :description, class: 'block font-medium text-gray-700 dark:text-gray-300' %>
+    <%= f.rich_text_area :description, required: true, class: 'mt-1' %>
+  </div>
+
+  <div class="flex flex-col sm:flex-row sm:space-x-4">
+    <div class="flex-1">
+      <%= f.label :starts_at, t('events.starts_at'), class: 'block font-medium text-gray-700 dark:text-gray-300' %>
+      <%= f.datetime_select :starts_at, required: true, class: 'mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:text-gray-100' %>
+    </div>
+    <div class="flex-1">
+      <%= f.label :ends_at, t('events.ends_at'), class: 'block font-medium text-gray-700 dark:text-gray-300' %>
+      <%= f.datetime_select :ends_at, required: true, class: 'mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:text-gray-100' %>
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :location, class: 'block font-medium text-gray-700 dark:text-gray-300' %>
+    <%= f.text_field :location, required: true, class: 'mt-1 block w-full rounded-md border-gray-300 dark:bg-gray-700 dark:text-gray-100' %>
+  </div>
+
+  <div>
+    <%= f.label :image, class: 'block font-medium text-gray-700 dark:text-gray-300' %>
+    <%= f.file_field :image, class: 'mt-1 block w-full text-gray-700 dark:text-gray-100' %>
+  </div>
+
+  <div class="flex space-x-4">
+    <%= f.submit t('buttons.save'), class: 'btn-primary' %>
+    <%= link_to t('buttons.cancel'), admin_events_path, class: 'btn-secondary' %>
+  </div>
+<% end %>

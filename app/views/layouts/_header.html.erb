@@ -1,0 +1,26 @@
+<header class="bg-white dark:bg-gray-800 shadow-sm">
+  <nav class="container mx-auto flex items-center justify-between py-4" aria-label="<%= t('navigation.main') %>">
+    <div class="flex items-center space-x-4">
+      <%= link_to root_path, class: 'flex items-center space-x-2' do %>
+        <%= image_tag 'logo1.png', alt: t('site_name'), class: 'h-8 w-auto' %>
+        <span class="font-semibold text-xl"><%= t('site_name') %></span>
+      <% end %>
+    </div>
+    <ul class="hidden sm:flex items-center space-x-6">
+      <li><%= link_to t('navigation.events'), events_path, class: 'hover:text-primary-dark' %></li>
+      <li><%= link_to t('navigation.projects'), projects_path, class: 'hover:text-primary-dark' %></li>
+      <li><%= link_to t('navigation.roles'), roles_path, class: 'hover:text-primary-dark' %></li>
+      <li><%= link_to t('navigation.about'), about_path, class: 'hover:text-primary-dark' %></li>
+    </ul>
+    <div class="flex items-center space-x-4">
+      <% if user_signed_in? %>
+        <%= link_to t('navigation.admin'), admin_root_path, class: 'btn-secondary' %>
+        <%= button_to t('navigation.sign_out'), destroy_user_session_path, method: :delete, class: 'btn-primary' %>
+      <% else %>
+        <%= link_to t('navigation.sign_in'), new_user_session_path, class: 'btn-primary' %>
+        <%= link_to t('navigation.register'), new_user_registration_path, class: 'btn-secondary' %>
+      <% end %>
+    </div>
+  </nav>
+  <!-- Mobile menu toggle (hidden on larger screens) can be implemented with Stimulus for progressive enhancement -->
+</header>

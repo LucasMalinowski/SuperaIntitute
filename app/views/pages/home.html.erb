@@ -1,0 +1,49 @@
+<% content_for :title, t('site_name') %>
+
+<section class="bg-primary text-white py-24">
+  <div class="container mx-auto text-center">
+    <h1 class="text-4xl font-bold mb-4"><%= t('site_name') %></h1>
+    <p class="text-lg max-w-2xl mx-auto"><%= t('footer.mission') %></p>
+    <div class="mt-6 flex justify-center space-x-4">
+      <%= link_to t('navigation.events'), events_path, class: 'btn-secondary' %>
+      <%= link_to t('navigation.projects'), projects_path, class: 'btn-secondary' %>
+      <%= link_to t('navigation.roles'), roles_path, class: 'btn-secondary' %>
+    </div>
+  </div>
+</section>
+
+<section class="py-12">
+  <div class="container mx-auto">
+    <h2 class="text-2xl font-bold mb-6"><%= t('navigation.events') %></h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <%= render @events %>
+    </div>
+    <div class="mt-4 text-right">
+      <%= link_to t('navigation.events'), events_path, class: 'btn-primary' %>
+    </div>
+  </div>
+</section>
+
+<section class="py-12 bg-gray-50 dark:bg-gray-900">
+  <div class="container mx-auto">
+    <h2 class="text-2xl font-bold mb-6"><%= t('navigation.projects') %></h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <%= render @projects %>
+    </div>
+    <div class="mt-4 text-right">
+      <%= link_to t('navigation.projects'), projects_path, class: 'btn-primary' %>
+    </div>
+  </div>
+</section>
+
+<section class="py-12">
+  <div class="container mx-auto">
+    <h2 class="text-2xl font-bold mb-6"><%= t('navigation.roles') %></h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <%= render @roles %>
+    </div>
+    <div class="mt-4 text-right">
+      <%= link_to t('navigation.roles'), roles_path, class: 'btn-primary' %>
+    </div>
+  </div>
+</section>

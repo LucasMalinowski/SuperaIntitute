@@ -21,7 +21,10 @@ pt-BR:
     back_to_roles: "Voltar para Vagas"
     back_to_projects: "Voltar para Projetos"
     destroy: "Excluir"
-    confirm_destroy: "Tem certeza que deseja excluir este evento?"
+    save: 'Salvar'
+    cancel: 'Cancelar'
+    delete: 'Excluir'
+    confirm_destroy: 'Tem certeza de que deseja excluir?'
   date:
     abbr_day_names:
       - dom
@@ -238,3 +241,49 @@ pt-BR:
       long: "%d de %B de %Y"
       short: "%d de %B, %H:%M"
     pm: pm
+  site_name: 'Instituto Supera'
+  navigation:
+    main: 'Navegação principal'
+    events: 'Eventos'
+    projects: 'Projetos'
+    roles: 'Vagas'
+    about: 'Sobre'
+    admin: 'Admin'
+    sign_in: 'Entrar'
+    sign_out: 'Sair'
+    register: 'Registrar'
+    footer: 'Rodapé'
+  footer:
+    mission: 'Transformando vidas através de ações sociais, educação e oportunidades.'
+    contact_us: 'Fale conosco'
+    address: 'Rua Exemplo, 123 - Cascavel, PR'
+    email: 'contato@supera.org.br'
+    phone: '+55 45 1234-5678'
+    follow_us: 'Siga‑nos'
+    legal: 'Legal'
+    accessibility_statement: 'Declaração de acessibilidade'
+    privacy_policy: 'Política de privacidade'
+    cookies_policy: 'Política de cookies'
+    rights_reserved: 'Todos os direitos reservados.'
+  accessibility:
+    skip_to_content: 'Ir para o conteúdo'
+  authorization:
+    denied: 'Você não está autorizado a acessar esta página.'
+  events:
+    created: 'Evento criado com sucesso.'
+    updated: 'Evento atualizado com sucesso.'
+    destroyed: 'Evento excluído com sucesso.'
+    new: 'Novo Evento'
+    starts_at: 'Início'
+    ends_at: 'Término'
+  projects:
+    created: 'Projeto criado com sucesso.'
+    updated: 'Projeto atualizado com sucesso.'
+    destroyed: 'Projeto excluído com sucesso.'
+  roles:
+    created: 'Vaga criada com sucesso.'
+    updated: 'Vaga atualizada com sucesso.'
+    destroyed: 'Vaga excluída com sucesso.'
+
+
+

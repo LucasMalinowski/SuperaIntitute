@@ -1,40 +1,17 @@
-<footer class="bg-gray-100 dark:bg-gray-800 text-sm py-8 mt-8 border-t dark:border-gray-700" aria-label="<%= t('navigation.footer') %>">
-  <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-    <div>
-      <h3 class="font-semibold mb-2"><%= t('site_name') %></h3>
-      <p class="mb-4"><%= t('footer.mission') %></p>
-      <ul>
-        <li><%= link_to t('navigation.events'), events_path, class: 'hover:text-primary-dark' %></li>
-        <li><%= link_to t('navigation.projects'), projects_path, class: 'hover:text-primary-dark' %></li>
-        <li><%= link_to t('navigation.roles'), roles_path, class: 'hover:text-primary-dark' %></li>
-      </ul>
+<footer class="py-5">
+  <div class="container text-center">
+    <div class="mb-4">
+      <a href="https://www.facebook.com/InstSupera" class="text-muted mx-2"><i class="fab fa-facebook-f fs-3"></i></a>
+      <a href="https://www.instagram.com/supera.instituto/" class="text-muted mx-2"><i class="fab fa-instagram fs-3"></i></a>
+      <a href="#" class="text-muted mx-2"><i class="fab fa-linkedin fs-3"></i></a>
+      <a href="https://www.youtube.com/channel/UCyZ1VQNFMnoY4LvXq2Zv9yA" class="text-muted mx-2"><i class="fab fa-youtube fs-3"></i></a>
+      <%= link_to new_user_session_path, class:"text-muted mx-2" do %>
+        <i class="fa-solid fa-user-gear fs-3"></i>
+      <% end %>
+
     </div>
-    <div>
-      <h3 class="font-semibold mb-2"><%= t('footer.contact_us') %></h3>
-      <address class="not-italic">
-        <p><%= t('footer.address') %></p>
-        <p><a href="mailto:<%= t('footer.email') %>" class="hover:text-primary-dark"><%= t('footer.email') %></a></p>
-        <p><a href="tel:<%= t('footer.phone') %>" class="hover:text-primary-dark"><%= t('footer.phone') %></a></p>
-      </address>
+    <div class="text-dark">
+      <span>&copy; <script>document.write(new Date().getFullYear())</script> Instituto Supera, LTDA. Todos os Direitos Reservados</span>
     </div>
-    <div>
-      <h3 class="font-semibold mb-2"><%= t('footer.follow_us') %></h3>
-      <ul class="flex space-x-4">
-        <li><a href="#" aria-label="Facebook" class="text-primary hover:text-primary-dark"><i class="fab fa-facebook"></i></a></li>
-        <li><a href="#" aria-label="Instagram" class="text-primary hover:text-primary-dark"><i class="fab fa-instagram"></i></a></li>
-        <li><a href="#" aria-label="LinkedIn" class="text-primary hover:text-primary-dark"><i class="fab fa-linkedin"></i></a></li>
-      </ul>
-    </div>
-    <div>
-      <h3 class="font-semibold mb-2"><%= t('footer.legal') %></h3>
-      <ul>
-        <li><%= link_to t('footer.accessibility_statement'), accessibility_statement_path, class: 'hover:text-primary-dark' %></li>
-        <li><%= link_to t('footer.privacy_policy'), privacy_policy_path, class: 'hover:text-primary-dark' %></li>
-        <li><%= link_to t('footer.cookies_policy'), cookies_policy_path, class: 'hover:text-primary-dark' %></li>
-      </ul>
-    </div>
-  </div>
-  <div class="container mx-auto mt-8 text-center text-xs text-gray-600 dark:text-gray-400">
-    &copy; <%= Time.current.year %> Instituto Supera. <%= t('footer.rights_reserved') %>
   </div>
 </footer>

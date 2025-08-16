@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_08_16_210821) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_30_114801) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,44 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_08_16_210821) do
     t.string "email"
     t.string "benefits"
     t.string "requirements"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "events", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.string "location"
-    t.string "slug"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "projects", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.string "location"
-    t.string "contact"
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.string "slug"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.string "company"
-    t.string "location"
-    t.string "salary"
-    t.string "contact"
-    t.string "email"
-    t.text "requirements"
-    t.string "benefits"
-    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

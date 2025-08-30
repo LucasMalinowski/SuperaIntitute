@@ -8,7 +8,7 @@ class CreateAdminsRoles < ActiveRecord::Migration[7.0]
       t.string :salary
       t.string :contact
       t.string :email
-      t.string :benefits
+      t.string :benefits, array: true, default: []
       t.string :requirements
 
       t.timestamps

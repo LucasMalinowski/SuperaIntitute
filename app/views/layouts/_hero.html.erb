@@ -1,14 +1,27 @@
-<section class="home" id="home">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-6 text-center text-md-left">
-        <h1>Instituto Supera: Desenvolvendo Talentos Para o Futuro</h1>
-        <p>Conectando talentos a oportunidades! 🌟 <br>Eventos, empregos e ações sociais. 🌐 <br>Junte-se ao futuro agora! 🚀🤝</p>
-        <a href="#about" class="btn btn-primary">Saiba mais</a>
+<section class="py-5 mt-5 hero-mobile-padding" id="home" style="padding-top: 120px;">
+  <div class="container py-4 py-lg-5">
+    <div class="row align-items-center min-vh-75">
+      <div class="col-lg-6 mb-4 mb-lg-0 order-2 order-lg-1">
+        <div class="pe-lg-4 text-center text-lg-start">
+          <h1 class="display-4 fw-bold text-dark mb-4 lh-base">
+            Instituto Supera: Desenvolvendo Talentos Para o Futuro
+          </h1>
+          <p class="lead text-muted mb-4 fs-5 fs-lg-4">
+            Conectando talentos a oportunidades! 🌟<br class="d-none d-md-block">
+            Eventos, empregos e ações sociais. 🌐<br class="d-none d-md-block">
+            Junte-se ao futuro agora! 🚀🤝
+          </p>
+          <a href="#about" class="btn btn-primary-custom btn-lg shadow-sm mb-4 mb-lg-0">
+            Saiba mais
+          </a>
+        </div>
       </div>
-      <div class="col-md-6 text-center">
-        <div class="circle-wrap mb-4 mb-md-0">
-          <%= image_tag("hero.png", alt: "img", class: "img-fluid") %>
+      <div class="col-lg-6 order-1 order-lg-2">
+        <div class="text-center position-relative px-3 px-lg-0">
+          <div class="bg-primary-custom rounded-circle position-absolute top-50 start-50 translate-middle opacity-10 d-none d-md-block"
+               style="width: 300px; height: 300px; z-index: -1;">
+          </div>
+          <%= image_tag("hero.png", alt: "Instituto Supera", class: "img-fluid", style: "max-width: 280px; width: 100%;") %>
         </div>
       </div>
     </div>

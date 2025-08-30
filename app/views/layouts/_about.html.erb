@@ -1,21 +1,56 @@
-<section class="about section-padding" id="about">
+<section class="py-5 bg-white" id="about">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-md-6">
-        <div class="img-box text-center">
-          <%= image_tag("hero.png", alt: "img", class: "img-fluid") %>
-          <div class="box box-1">
-            <span>70+</span>
-            <p>Familias alcançadas</p>
+      <div class="col-lg-6 mb-4 mb-lg-0 order-2 order-lg-1">
+        <div class="position-relative text-center px-3 px-lg-0">
+          <!-- Background circle -->
+          <div class="bg-secondary-custom rounded-circle shadow-sm mx-auto position-relative d-inline-block p-3 p-lg-4" style="max-width: 350px;">
+            <%= image_tag("hero.png", alt: "Instituto Supera", class: "img-fluid rounded-circle") %>
+
+            <!-- Statistics badge -->
+            <div class="position-absolute bg-primary-custom text-white rounded-3 shadow p-3 text-center d-none d-sm-block"
+                 style="top: 50%; left: -15px; transform: translateY(-50%); min-width: 110px;">
+              <div class="fw-bold fs-2 lh-1 mb-1">70+</div>
+              <small class="text-uppercase fw-normal opacity-75" style="font-size: 0.7rem; letter-spacing: 0.5px;">
+                Famílias<br>alcançadas
+              </small>
+            </div>
+
+            <!-- Mobile statistics badge -->
+            <div class="d-block d-sm-none mt-3">
+              <div class="bg-primary-custom text-white rounded-3 shadow p-3 text-center mx-auto" style="max-width: 150px;">
+                <div class="fw-bold fs-3 lh-1 mb-1">70+</div>
+                <small class="text-uppercase fw-normal opacity-75" style="font-size: 0.7rem; letter-spacing: 0.5px;">
+                  Famílias alcançadas
+                </small>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="section-title">
-          <span class="title">Sobre nós</span>
+
+      <div class="col-lg-6 order-1 order-lg-2">
+        <div class="ps-lg-4 text-center text-lg-start">
+          <!-- Section title -->
+          <div class="mb-4">
+            <div class="d-inline-block position-relative">
+              <span class="text-primary-custom fw-normal fs-6 px-4 position-relative">
+                Sobre nós
+              </span>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="mb-4">
+            <p class="text-muted fs-5 fs-lg-4 lh-base mb-4">
+              Somos um Instituto que busca apresentar oportunidades de crescimento pessoal e profissional.
+            </p>
+            <p class="text-muted lh-base mb-0">
+              Promovendo eventos e projetos sociais por toda a cidade, buscamos alcançar cada vez mais pessoas e famílias,
+              e impulsioná-las a um futuro cada vez mais próspero.
+            </p>
+          </div>
         </div>
-        <p>Somos um Instituto que busca apresentar oportunidades de crescimento pessoal e profissional.</p>
-        <p>Promovendo eventos e projetos sociais por toda a cidade, buscamos alcançar cada vez mais pessoas e famílias, e impulsioná-las a um futuro cada vez mais próspero.</p>
       </div>
     </div>
   </div>

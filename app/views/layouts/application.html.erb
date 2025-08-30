@@ -6,63 +6,187 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <!-- Updated jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-  <!-- Popper.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css">
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-thin.css">
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-solid.css">
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-regular.css">
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-light.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <!-- Bootstrap JS (including Popper.js) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %>
-  <%= javascript_include_tag 'main.js' %>
-  <%= javascript_include_tag 'style.switcher.js' %>
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
   <%= javascript_importmap_tags %>
   <%= favicon_link_tag 'logo1.png' %>
 
+  <style>
+      :root {
+          --primary-color: #2563eb;
+          --primary-light: #3b82f6;
+          --primary-dark: #1d4ed8;
+          --secondary-color: #f1f5f9;
+          --secondary-dark: #e2e8f0;
+          --accent-color: #10b981;
+          --text-primary: #1e293b;
+          --text-secondary: #64748b;
+          --bg-light: #f8fafc;
+          --bg-white: #ffffff;
+      }
+
+      body {
+          font-family: 'Poppins', sans-serif;
+          font-weight: 300;
+          background-color: var(--bg-light);
+      }
+
+      .text-primary-custom {
+          color: var(--primary-color) !important;
+      }
+
+      .bg-primary-custom {
+          background-color: var(--primary-color) !important;
+      }
+
+      .bg-secondary-custom {
+          background-color: var(--secondary-color) !important;
+      }
+
+      .btn-primary-custom {
+          background-color: var(--primary-color);
+          border-color: var(--primary-color);
+          color: white;
+          border-radius: 30px;
+          padding: 12px 32px;
+          font-weight: 500;
+          font-size: 16px;
+          transition: all 0.3s ease;
+      }
+
+      .btn-primary-custom:hover {
+          background-color: var(--primary-dark);
+          border-color: var(--primary-dark);
+          color: white;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      }
+
+      .navbar-mobile-bg {
+          background-color: var(--bg-white) !important;
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+      }
+
+      .section-divider {
+          background: linear-gradient(135deg, var(--secondary-color) 0%, var(--bg-white) 100%);
+      }
+
+      @media (max-width: 767.98px) {
+          .display-4 {
+              font-size: 2.2rem;
+          }
+
+          .display-5 {
+              font-size: 1.8rem;
+          }
+
+          .navbar-collapse {
+              background-color: var(--bg-white);
+              border-radius: 12px;
+              margin-top: 1rem;
+              padding: 1rem;
+              box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+          }
+
+          .hero-mobile-padding {
+              padding-top: 100px !important;
+          }
+      }
+  </style>
 </head>
 
-
-
-<body class="t-dark">
-  <div class="page-wrapper">
-    <p class=”notice”><%= notice %></p>
-    <p class=”alert”><%= alert %></p>
-
-    <%= render "layouts/navbar" %>
-    <%= render "layouts/hero" %>
-    <%= render "layouts/vagas" %>
-    <%= render "layouts/eventos" %>
-    <%= render "layouts/projetos" %>
-    <%= render "layouts/about" %>
-    <%= render "layouts/footer" %>
-
-    <%= yield %>  
+<body class="bg-light">
+<div class="min-vh-100">
+  <!-- Flash Messages -->
+  <% if notice %>
+    <div class="alert alert-success alert-dismissible fade show m-0 rounded-0" role="alert">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
-  </body>
+  <% end %>
+
+  <% if alert %>
+    <div class="alert alert-danger alert-dismissible fade show m-0 rounded-0" role="alert">
+      <%= alert %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+  <% end %>
+
+  <%= render "layouts/navbar" %>
+  <%= render "layouts/hero" %>
+  <%= render "layouts/vagas" %>
+  <%= render "layouts/eventos" %>
+  <%= render "layouts/projetos" %>
+  <%= render "layouts/about" %>
+  <%= render "layouts/footer" %>
+
+  <%= yield %>
+</div>
 
 <script>
-  document.querySelectorAll('a.nav-link[href^="#"]').forEach(anchor => {
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
-        behavior: 'smooth'
-      });
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+        const targetPosition = target.offsetTop - navbarHeight - 20;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
     });
   });
 
+  // Navbar background on scroll with mobile optimization
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    const isMobile = window.innerWidth < 768;
+
+    if (window.scrollY > 50) {
+      navbar.classList.add('shadow-sm');
+      if (!isMobile) {
+        navbar.classList.add('bg-white');
+        navbar.classList.remove('bg-transparent');
+      } else {
+        navbar.classList.add('navbar-mobile-bg');
+        navbar.classList.remove('bg-transparent');
+      }
+    } else {
+      navbar.classList.remove('bg-white', 'shadow-sm', 'navbar-mobile-bg');
+      if (!isMobile) {
+        navbar.classList.add('bg-transparent');
+      } else {
+        navbar.classList.add('navbar-mobile-bg'); // Keep mobile navbar always visible
+      }
+    }
+  });
+
+  // Initialize mobile navbar background
+  document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+    const isMobile = window.innerWidth < 768;
+
+    if (isMobile) {
+      navbar.classList.add('navbar-mobile-bg');
+      navbar.classList.remove('bg-transparent');
+    }
+  });
 </script>
+</body>
 </html>
-
-

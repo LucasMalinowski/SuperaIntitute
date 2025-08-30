@@ -1,17 +1,46 @@
-<footer class="py-5">
-  <div class="container text-center">
-    <div class="mb-4">
-      <a href="https://www.facebook.com/InstSupera" class="text-muted mx-2"><i class="fab fa-facebook-f fs-3"></i></a>
-      <a href="https://www.instagram.com/supera.instituto/" class="text-muted mx-2"><i class="fab fa-instagram fs-3"></i></a>
-      <a href="#" class="text-muted mx-2"><i class="fab fa-linkedin fs-3"></i></a>
-      <a href="https://www.youtube.com/channel/UCyZ1VQNFMnoY4LvXq2Zv9yA" class="text-muted mx-2"><i class="fab fa-youtube fs-3"></i></a>
-      <%= link_to new_user_session_path, class:"text-muted mx-2" do %>
-        <i class="fa-solid fa-user-gear fs-3"></i>
-      <% end %>
-
+<footer class="py-5 bg-white border-top">
+  <div class="container">
+    <!-- Social Media Links -->
+    <div class="text-center mb-4">
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://www.facebook.com/InstSupera"
+           class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+           style="width: 50px; height: 50px;"
+           title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/supera.instituto/"
+           class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+           style="width: 50px; height: 50px;"
+           title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#"
+           class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+           style="width: 50px; height: 50px;"
+           title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://www.youtube.com/channel/UCyZ1VQNFMnoY4LvXq2Zv9yA"
+           class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+           style="width: 50px; height: 50px;"
+           title="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <%= link_to new_user_session_path,
+                    class: "btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center",
+                    style: "width: 50px; height: 50px;",
+                    title: "Admin Login" do %>
+          <i class="fas fa-user-gear"></i>
+        <% end %>
+      </div>
     </div>
-    <div class="text-dark">
-      <span>&copy; <script>document.write(new Date().getFullYear())</script> Instituto Supera, LTDA. Todos os Direitos Reservados</span>
+
+    <!-- Copyright -->
+    <div class="text-center">
+      <small class="text-muted">
+        &copy; <script>document.write(new Date().getFullYear())</script> Instituto Supera, LTDA. Todos os Direitos Reservados
+      </small>
     </div>
   </div>
 </footer>

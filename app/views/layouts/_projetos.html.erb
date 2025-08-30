@@ -1,42 +1,81 @@
-<section class="projects section-padding" id="projects">
+<section class="py-5 bg-secondary-custom" id="projects">
   <div class="container">
-    <div class="section-title text-center">
-      <span class="title">Projetos</span>
-      <h2 class="sub-title">Próximos Projetos</h2>
+    <!-- Section Title -->
+    <div class="text-center mb-5">
+      <div class="d-inline-block position-relative">
+        <span class="text-primary-custom fw-normal fs-6 px-4 position-relative">
+          Projetos
+        </span>
+      </div>
+      <h2 class="display-5 fw-bold text-dark mt-3 mb-0">Próximos Projetos</h2>
     </div>
-    <div class="row">
+
+    <!-- Projects Grid -->
+    <div class="row g-4">
       <% @projects&.each do |project| %>
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h3 class="card-title text-dark"><%= project.name %></h3>
-              <p class="card-text text-dark"><%= project.location %></p>
-              <ul class="list-unstyled text-dark">
-                <li><%= project.description %></li>
-                <li><%= I18n.l(project.date, format: :short) %></li>
-              </ul>
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#projectModal<%= project.id %>">+ informações</a>
+        <div class="col-sm-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm bg-white">
+            <div class="card-body p-4">
+              <h3 class="card-title h5 fw-bold text-dark mb-3 lh-base"><%= project.name %></h3>
+              <div class="mb-3">
+                <div class="d-flex align-items-center mb-2">
+                  <i class="fas fa-map-marker-alt text-primary-custom me-2 flex-shrink-0"></i>
+                  <small class="text-muted"><%= project.location %></small>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                  <i class="fas fa-calendar-alt text-primary-custom me-2 flex-shrink-0"></i>
+                  <small class="text-muted"><%= I18n.l(project.date, format: :short) %></small>
+                </div>
+              </div>
+              <p class="text-muted small mb-4 lh-base">
+                <%= truncate(project.description, length: 80) %>
+              </p>
+              <button type="button" class="btn btn-outline-primary btn-sm rounded-pill w-100" data-bs-toggle="modal" data-bs-target="#projectModal<%= project.id %>">
+                Ver detalhes
+              </button>
             </div>
           </div>
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="projectModal<%= project.id %>" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel<%= project.id %>" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content text-dark">
-              <div class="modal-header">
-                <h5 class="modal-title text-dark" id="projectModalLabel<%= project.id %>"><%= project.name %></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+        <div class="modal fade" id="projectModal<%= project.id %>" tabindex="-1" aria-labelledby="projectModalLabel<%= project.id %>" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+              <div class="modal-header border-0 pb-2 bg-secondary-custom">
+                <h5 class="modal-title fw-bold text-dark" id="projectModalLabel<%= project.id %>"><%= project.name %></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <p><strong>Localização:</strong> <%= project.location %></p>
-                <p><strong>Data:</strong> <%= I18n.l(project.date, format: :long) %></p>
-                <p><strong>Descrição:</strong> <%= project.description %></p>
+                <div class="mb-3">
+                  <div class="d-flex align-items-start mb-2">
+                    <i class="fas fa-map-marker-alt text-primary-custom me-3 mt-1 flex-shrink-0"></i>
+                    <div>
+                      <strong class="text-dark d-block small">Localização:</strong>
+                      <span class="text-muted"><%= project.location %></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="d-flex align-items-start mb-2">
+                    <i class="fas fa-calendar-alt text-primary-custom me-3 mt-1 flex-shrink-0"></i>
+                    <div>
+                      <strong class="text-dark d-block small">Data:</strong>
+                      <span class="text-muted"><%= I18n.l(project.date, format: :long) %></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-0">
+                  <div class="d-flex align-items-start">
+                    <i class="fas fa-info-circle text-primary-custom me-3 mt-1 flex-shrink-0"></i>
+                    <div>
+                      <strong class="text-dark d-block small mb-2">Descrição:</strong>
+                      <p class="text-muted mb-0 lh-base"><%= project.description %></p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              <div class="modal-footer border-0 bg-secondary-custom">
+                <button type="button" class="btn btn-secondary btn-sm rounded-pill" data-bs-dismiss="modal">Fechar</button>
               </div>
             </div>
           </div>

@@ -1,51 +1,88 @@
-<section class="vagas section-padding" id="vagas">
+<section class="py-5 bg-secondary-custom" id="vagas">
   <div class="container">
-    <div class="section-title text-center">
-      <span class="title">Vagas</span>
-      <h2 class="sub-title">Vagas Disponíveis</h2>
+    <!-- Section Title -->
+    <div class="text-center mb-5">
+      <div class="d-inline-block position-relative">
+        <span class="text-primary-custom fw-normal fs-6 px-4 position-relative">
+          Vagas
+          </span>
+      </div>
+      <h2 class="display-5 fw-bold text-dark mt-3 mb-0">Vagas Disponíveis</h2>
     </div>
-    <div class="row">
+
+    <!-- Jobs Grid -->
+    <div class="row g-4">
       <% @roles&.each do |role| %>
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body text-dark">
-              <h3 class="card-title text-dark"><%= role.name %></h3>
-              <p class="card-text"><%= number_to_currency(role.salary) %> - <%= role.company %></p>
-              <ul class="list-unstyled">
-                <% JSON.parse(role.benefits).first(3).each do |benefit| %>
-                  <li><i class="fas fa-check"></i> <%= benefit %></li>
+        <div class="col-sm-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm bg-white">
+            <div class="card-body p-4">
+              <h3 class="card-title h5 fw-bold text-dark mb-3 lh-base"><%= role.name %></h3>
+              <div class="mb-3 p-3 bg-light rounded-3">
+                <div class="fw-bold text-primary-custom fs-6 mb-1"><%= number_to_currency(role.salary) %></div>
+                <small class="text-muted"><%= role.company %></small>
+              </div>
+              <ul class="list-unstyled mb-4">
+                <% role.benefits.first(3).each do |benefit| %>
+                  <li class="mb-2 d-flex align-items-start">
+                    <i class="fas fa-check text-success me-2 mt-1 flex-shrink-0" style="font-size: 0.8rem;"></i>
+                    <small class="lh-base"><%= benefit %></small>
+                  </li>
                 <% end %>
-                <% if JSON.parse(role.benefits).length > 3 %>
-                  <li><i class="fas fa-check"></i> ...</li>
+                <% if role.benefits.length > 3 %>
+                  <li class="mb-2 d-flex align-items-start">
+                    <i class="fas fa-ellipsis-h text-muted me-2 mt-1 flex-shrink-0" style="font-size: 0.8rem;"></i>
+                    <small class="text-muted lh-base">e mais benefícios...</small>
+                  </li>
                 <% end %>
               </ul>
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#roleModal<%= role.id %>">+ informações</a>
+              <button type="button" class="btn btn-outline-primary btn-sm rounded-pill w-100" data-bs-toggle="modal" data-bs-target="#roleModal<%= role.id %>">
+                Ver detalhes
+              </button>
             </div>
           </div>
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="roleModal<%= role.id %>" tabindex="-1" role="dialog" aria-labelledby="roleModalLabel<%= role.id %>" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content text-dark">
-              <div class="modal-header">
-                <h5 class="modal-title text-dark" id="roleModalLabel<%= role.id %>"><%= role.name %></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+        <div class="modal fade" id="roleModal<%= role.id %>" tabindex="-1" aria-labelledby="roleModalLabel<%= role.id %>" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+              <div class="modal-header border-0 pb-2 bg-secondary-custom">
+                <h5 class="modal-title fw-bold text-dark" id="roleModalLabel<%= role.id %>"><%= role.name %></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <p><strong>Salário:</strong> <%= number_to_currency(role.salary) %></p>
-                <p><strong>Empresa:</strong> <%= role.company %></p>
-                <p><strong>Benefícios:</strong></p>
-                <ul>
-                  <% JSON.parse(role.benefits).each do |benefit| %>
-                    <li><%= benefit %></li>
-                  <% end %>
-                </ul>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <div class="bg-light p-3 rounded-3">
+                      <div class="row">
+                        <div class="col-6">
+                          <strong class="text-dark d-block small">Salário:</strong>
+                          <span class="text-primary-custom fw-bold"><%= number_to_currency(role.salary) %></span>
+                        </div>
+                        <div class="col-6">
+                          <strong class="text-dark d-block small">Empresa:</strong>
+                          <span class="text-muted"><%= role.company %></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <strong class="text-dark d-block mb-3">Benefícios:</strong>
+                    <div class="row">
+                      <% role.benefits.each do |benefit| %>
+                        <div class="col-12 col-md-6 mb-2">
+                          <div class="d-flex align-items-start">
+                            <i class="fas fa-check text-success me-2 mt-1 flex-shrink-0" style="font-size: 0.8rem;"></i>
+                            <small class="lh-base"><%= benefit %></small>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              <div class="modal-footer border-0 bg-secondary-custom">
+                <button type="button" class="btn btn-secondary btn-sm rounded-pill" data-bs-dismiss="modal">Fechar</button>
               </div>
             </div>
           </div>

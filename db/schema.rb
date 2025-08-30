@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_30_114801) do
     t.string "salary"
     t.string "contact"
     t.string "email"
-    t.string "benefits"
+    t.string "benefits", default: [], array: true
     t.string "requirements"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

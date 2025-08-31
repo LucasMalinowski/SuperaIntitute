@@ -19,6 +19,9 @@ module SuperaInstitute
     end
 
     config.time_zone = 'America/Sao_Paulo'
+    I18n.available_locales = [:'pt-BR', :en]
+    I18n.default_locale = :'pt-BR'
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
 
     config.active_storage.variant_processor = :mini_magick
     # Configuration for the application, engines, and railties goes here.

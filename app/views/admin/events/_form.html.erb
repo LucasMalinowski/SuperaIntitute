@@ -59,16 +59,42 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :image, class: "form-label fw-semibold" %>
-    <%= form.file_field :image, class: "form-control #{'is-invalid' if event.errors[:image].any?}",
-                        accept: "image/*" %>
-    <div class="form-text">Formatos aceitos: JPEG, PNG, GIF, WebP. Tamanho máximo: 5MB</div>
-    <% if event.errors[:image].any? %>
-      <div class="invalid-feedback">
-        <%= event.errors[:image].first %>
-      </div>
+    <%= form.label :images, class: "form-label fw-semibold" %>
+    <%= form.file_field :images,
+                        multiple: true,
+                        direct_upload: true,
+                        accept: "image/*,video/*",
+                        class: "form-control #{'is-invalid' if event.errors[:images].any?}" %>
+    <div class="form-text">Você pode selecionar várias imagens (JPEG, PNG, GIF, WebP). Máx 5MB cada.</div>
+    <% if event.errors[:images].any? %>
+      <div class="invalid-feedback"><%= event.errors[:images].first %></div>
     <% end %>
   </div>
+
+  <% if event.images.attached? %>
+    <div class="mb-3 d-flex flex-wrap gap-3">
+      <% event.images.each do |att| %>
+        <div class="border rounded p-2 text-center" style="width: 180px;">
+          <% if att.blob.content_type.start_with?("image/") %>
+            <%= image_tag att, class: "img-fluid rounded" %>
+          <% elsif att.blob.content_type.start_with?("video/") %>
+            <%= video_tag url_for(att),
+                          controls: true,
+                          preload: "metadata",
+                          width: 180,
+                          class: "rounded" %>
+          <% end %>
+
+          <div class="mt-2 d-flex justify-content-center">
+            <%= link_to "Remover",
+                        admin_attachment_path(att.id),
+                        data: { turbo_method: :delete, turbo_confirm: "Remover este arquivo?" },
+                        class: "btn btn-sm btn-outline-danger" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
   <div class="mb-4">
     <div class="form-check form-switch">

@@ -37,7 +37,7 @@
           <i class="fab fa-youtube fs-5"></i>
         </a>
         <% if user_signed_in? %>
-          <%= link_to admin_path, class: "text-muted text-decoration-none", title: "Admin" do %>
+          <%= link_to admin_root_path, class: "text-muted text-decoration-none", title: "Admin" do %>
             <i class="fas fa-user-gear fs-5"></i>
           <% end %>
         <% end %>

@@ -3,7 +3,7 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><%= link_to "Dashboard", admin_root_path %></li>
     <li class="breadcrumb-item"><%= link_to "Usuários", admin_users_path %></li>
-    <li class="breadcrumb-item"><%= link_to @user.display_name, admin_user_path(@user) %></li>
+    <li class="breadcrumb-item"><%= @user.display_name %></li>
     <li class="breadcrumb-item active">Editar</li>
   </ol>
 <% end %>
@@ -20,5 +20,3 @@
     </div>
   </div>
 </div>
-
-<

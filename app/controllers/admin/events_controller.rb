@@ -28,8 +28,14 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def update
-    if @event.update(event_params)
-      redirect_to admin_event_path(@event), notice: 'Event was successfully updated.'
+    @event = Event.find(params[:id])
+
+    if @event.update(event_params.except(:images))
+      if params[:event][:images].present?
+        @event.images.attach(params[:event][:images])
+      end
+
+      redirect_to admin_event_path(@event), notice: "Evento atualizado com sucesso."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -47,6 +53,6 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :date, :location, :image, :published)
+    params.require(:event).permit(:name, :description, :date, :location, :published, images: [])
   end
 end

@@ -28,7 +28,7 @@ class Project < ApplicationRecord
   def formatted_date
     return 'Ongoing' if date.nil?
 
-    date.strftime('%B %d, %Y')
+    I18n.l(date, format: :long)
   end
 
   private

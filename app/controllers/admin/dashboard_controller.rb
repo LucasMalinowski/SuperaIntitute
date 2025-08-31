@@ -1,4 +1,6 @@
 class Admin::DashboardController < Admin::BaseController
+  before_action :authenticate_user!
+
   def index
     @stats = {
       events_count: Event.count,

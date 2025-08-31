@@ -1,15 +1,13 @@
 class Event < ApplicationRecord
   include Searchable
 
-  has_one_attached :image
+  has_many_attached :images
   belongs_to :creator, class_name: 'User', foreign_key: 'created_by_id'
 
   validates :name, presence: true, length: { minimum: 2, maximum: 255 }
   validates :description, presence: true, length: { minimum: 10, maximum: 2000 }
   validates :location, presence: true, length: { minimum: 2, maximum: 255 }
   validates :created_by_id, presence: true
-
-  validate :image_format
 
   scope :upcoming, -> { where('date >= ?', Time.current) }
   scope :past, -> { where('date < ?', Time.current) }
@@ -26,17 +24,6 @@ class Event < ApplicationRecord
   end
 
   def formatted_date
-    date.strftime('%B %d, %Y at %I:%M %p')
-  end
-
-  private
-
-  def image_format
-    return unless image.attached?
-
-    service_result = ImageProcessingService.call(image)
-    return if service_result.success?
-
-    service_result.errors.each { |error| errors.add(:image, error) }
+    I18n.l(date, format: :long)
   end
 end

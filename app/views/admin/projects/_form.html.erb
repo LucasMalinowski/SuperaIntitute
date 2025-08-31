@@ -1,9 +1,9 @@
-<%= form_with(model: admins_project, local: true) do |form| %>
-  <% if admins_project.errors.any? %>
+<%= form_with(model: project, url: admin_project_path, local: true) do |form| %>
+  <% if project.errors.any? %>
     <div class="alert alert-danger">
-      <h2><%= pluralize(admins_project.errors.count, "erro") %> impedem este projeto de ser salvo:</h2>
+      <h2><%= pluralize(project.errors.count, "erro") %> impedem este projeto de ser salvo:</h2>
       <ul>
-        <% admins_project.errors.each do |error| %>
+        <% project.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

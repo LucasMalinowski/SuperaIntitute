@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     resources :roles
     resources :projects
     resources :users
+    delete "attachments/:id", to: "attachments#destroy", as: :attachment
   end
 end

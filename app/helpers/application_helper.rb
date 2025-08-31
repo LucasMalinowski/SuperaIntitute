@@ -27,10 +27,4 @@ module ApplicationHelper
   def truncate_html(text, length = 150)
     strip_tags(text).truncate(length)
   end
-
-  def formatted_datetime(datetime)
-    return unless datetime
-
-    datetime.strftime('%B %d, %Y at %I:%M %p')
-  end
 end

@@ -12,6 +12,17 @@ module SuperaInstitute
     config.load_defaults 7.0
     config.i18n.default_locale = 'pt-BR'
 
+    config.generators do |g|
+      g.test_framework nil
+      g.helper false
+      g.assets false
+    end
+
+    config.time_zone = 'America/Sao_Paulo'
+
+    config.active_job.queue_adapter = :sidekiq
+
+    config.active_storage.variant_processor = :mini_magick
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

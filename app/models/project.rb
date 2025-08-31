@@ -15,6 +15,7 @@ class Project < ApplicationRecord
   scope :past, -> { where('date < ?', Date.current) }
   scope :published, -> { where(published: true) }
   scope :by_date, -> { order(Arel.sql('date IS NULL, date ASC')) }
+  scope :recent, -> { order(created_at: :desc) }
 
   def upcoming?
     date.nil? || date >= Date.current

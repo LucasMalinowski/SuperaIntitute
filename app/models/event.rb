@@ -1,5 +1,4 @@
 class Event < ApplicationRecord
-  include Publishable
   include Searchable
 
   has_one_attached :image
@@ -7,7 +6,6 @@ class Event < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 2, maximum: 255 }
   validates :description, presence: true, length: { minimum: 10, maximum: 2000 }
-  validates :date, presence: true, future_date: { on: :create }
   validates :location, presence: true, length: { minimum: 2, maximum: 255 }
   validates :created_by_id, presence: true
 
@@ -17,9 +15,7 @@ class Event < ApplicationRecord
   scope :past, -> { where('date < ?', Time.current) }
   scope :by_date, -> { order(:date) }
   scope :recent, -> { order(created_at: :desc) }
-
-  after_create_commit :schedule_image_processing
-  after_create_commit :notify_about_creation
+  scope :published, -> { where(published: true) }
 
   def upcoming?
     date >= Time.current

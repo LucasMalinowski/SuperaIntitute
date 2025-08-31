@@ -1,0 +1,98 @@
+<%= form_with(model: [:admin, project], local: true, html: { multipart: true }) do |form| %>
+	<% if project.errors.any? %>
+		<div class="alert alert-danger">
+			<h6><i class="bi bi-exclamation-triangle me-2"></i>Corrija os seguintes erros:</h6>
+			<ul class="mb-0">
+				<% project.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="mb-3">
+		<%= form.label :name, class: "form-label fw-semibold" %>
+		<%= form.text_field :name, class: "form-control #{'is-invalid' if project.errors[:name].any?}",
+												placeholder: "Nome do projeto" %>
+		<% if project.errors[:name].any? %>
+			<div class="invalid-feedback">
+				<%= project.errors[:name].first %>
+			</div>
+		<% end %>
+	</div>
+
+	<div class="mb-3">
+		<%= form.label :description, class: "form-label fw-semibold" %>
+		<%= form.text_area :description, class: "form-control #{'is-invalid' if project.errors[:description].any?}",
+											 rows: 4, placeholder: "Descrição detalhada do projeto" %>
+		<% if project.errors[:description].any? %>
+			<div class="invalid-feedback">
+				<%= project.errors[:description].first %>
+			</div>
+		<% end %>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="mb-3">
+				<%= form.label :location, class: "form-label fw-semibold" %>
+				<%= form.text_field :location, class: "form-control #{'is-invalid' if project.errors[:location].any?}",
+														placeholder: "Local do projeto" %>
+				<% if project.errors[:location].any? %>
+					<div class="invalid-feedback">
+						<%= project.errors[:location].first %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="mb-3">
+				<%= form.label :contact, class: "form-label fw-semibold" %>
+				<%= form.email_field :contact, class: "form-control #{'is-invalid' if project.errors[:contact].any?}",
+														 placeholder: "contato@email.com" %>
+				<% if project.errors[:contact].any? %>
+					<div class="invalid-feedback">
+						<%= project.errors[:contact].first %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+	<div class="mb-3">
+		<%= form.label :date, class: "form-label fw-semibold" %>
+		<%= form.date_field :date, class: "form-control #{'is-invalid' if project.errors[:date].any?}" %>
+		<div class="form-text">Deixe em branco para projetos em andamento</div>
+		<% if project.errors[:date].any? %>
+			<div class="invalid-feedback">
+				<%= project.errors[:date].first %>
+			</div>
+		<% end %>
+	</div>
+
+	<div class="mb-3">
+		<%= form.label :image, class: "form-label fw-semibold" %>
+		<%= form.file_field :image, class: "form-control #{'is-invalid' if project.errors[:image].any?}",
+												accept: "image/*" %>
+		<div class="form-text">Formatos aceitos: JPEG, PNG, GIF, WebP. Tamanho máximo: 5MB</div>
+		<% if project.errors[:image].any? %>
+			<div class="invalid-feedback">
+				<%= project.errors[:image].first %>
+			</div>
+		<% end %>
+	</div>
+
+	<div class="mb-4">
+		<div class="form-check form-switch">
+			<%= form.check_box :published, class: "form-check-input" %>
+			<%= form.label :published, "Publicar projeto", class: "form-check-label" %>
+			<div class="form-text">Projetos publicados ficam visíveis no site</div>
+		</div>
+	</div>
+
+	<div class="d-flex gap-2">
+		<%= form.submit project.persisted? ? "Atualizar Projeto" : "Criar Projeto",
+										class: "btn btn-primary" %>
+		<%= link_to "Cancelar", admin_projects_path, class: "btn btn-secondary" %>
+	</div>
+<% end %>

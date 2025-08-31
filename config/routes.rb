@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  get "admin", to: "admins#index"
   namespace :admin do
     root 'dashboard#index'
 

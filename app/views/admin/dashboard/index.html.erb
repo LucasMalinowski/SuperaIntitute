@@ -1,0 +1,127 @@
+<% content_for :page_title, "Dashboard" %>
+
+<div class="row mb-4">
+  <div class="col-md-3">
+    <div class="stats-card text-center">
+      <div style="color: var(--admin-primary);">
+        <i class="bi bi-calendar-event" style="font-size: 2rem;"></i>
+      </div>
+      <h3 class="stats-number mt-2" style="color: var(--admin-primary);"><%= @stats[:events_count] %></h3>
+      <p class="stats-label mb-0">Eventos</p>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="stats-card text-center">
+      <div style="color: var(--admin-success);">
+        <i class="bi bi-folder" style="font-size: 2rem;"></i>
+      </div>
+      <h3 class="stats-number mt-2" style="color: var(--admin-success);"><%= @stats[:projects_count] %></h3>
+      <p class="stats-label mb-0">Projetos</p>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="stats-card text-center">
+      <div style="color: var(--admin-warning);">
+        <i class="bi bi-briefcase" style="font-size: 2rem;"></i>
+      </div>
+      <h3 class="stats-number mt-2" style="color: var(--admin-warning);"><%= @stats[:roles_count] %></h3>
+      <p class="stats-label mb-0">Vagas</p>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="stats-card text-center">
+      <div style="color: var(--admin-info);">
+        <i class="bi bi-people" style="font-size: 2rem;"></i>
+      </div>
+      <h3 class="stats-number mt-2" style="color: var(--admin-info);"><%= @stats[:users_count] %></h3>
+      <p class="stats-label mb-0">Usuários</p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h6 class="mb-0"><i class="bi bi-calendar-event me-2"></i>Eventos Recentes</h6>
+        <%= link_to admin_events_path, class: "btn btn-sm btn-outline-primary" do %>
+          Ver todos
+        <% end %>
+      </div>
+      <div class="card-body">
+        <% if @stats[:recent_events].any? %>
+          <% @stats[:recent_events].each do |event| %>
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <h6 class="mb-1"><%= event.name %></h6>
+                <small class="text-muted"><%= event.formatted_date %></small>
+              </div>
+              <span class="badge bg-<%= event.upcoming? ? 'success' : 'secondary' %>">
+                <%= event.upcoming? ? 'Próximo' : 'Passado' %>
+              </span>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="text-muted text-center py-4">Nenhum evento encontrado</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h6 class="mb-0"><i class="bi bi-folder me-2"></i>Projetos Recentes</h6>
+        <%= link_to admin_projects_path, class: "btn btn-sm btn-outline-success" do %>
+          Ver todos
+        <% end %>
+      </div>
+      <div class="card-body">
+        <% if @stats[:recent_projects].any? %>
+          <% @stats[:recent_projects].each do |project| %>
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <h6 class="mb-1"><%= project.name %></h6>
+                <small class="text-muted"><%= project.formatted_date %></small>
+              </div>
+              <span class="badge bg-<%= project.upcoming? ? 'primary' : 'success' %>">
+                <%= project.upcoming? ? 'Ativo' : 'Concluído' %>
+              </span>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="text-muted text-center py-4">Nenhum projeto encontrado</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h6 class="mb-0"><i class="bi bi-briefcase me-2"></i>Vagas Recentes</h6>
+        <%= link_to admin_roles_path, class: "btn btn-sm btn-outline-warning" do %>
+          Ver todas
+        <% end %>
+      </div>
+      <div class="card-body">
+        <% if @stats[:recent_roles].any? %>
+          <% @stats[:recent_roles].each do |role| %>
+            <div class="mb-3">
+              <h6 class="mb-1"><%= role.name %></h6>
+              <small class="text-muted"><%= role.company %> • <%= role.location %></small>
+              <div class="mt-1">
+                <span class="badge bg-warning text-dark"><%= role.formatted_salary %></span>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="text-muted text-center py-4">Nenhuma vaga encontrada</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,161 @@
+<%= form_with(model: [:admin, role], local: true, html: { multipart: true }) do |form| %>
+  <% if role.errors.any? %>
+    <div class="alert alert-danger">
+      <h6><i class="bi bi-exclamation-triangle me-2"></i>Corrija os seguintes erros:</h6>
+      <ul class="mb-0">
+        <% role.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :name, class: "form-label fw-semibold" %>
+        <%= form.text_field :name, class: "form-control #{'is-invalid' if role.errors[:name].any?}",
+                            placeholder: "Ex: Desenvolvedor Full Stack" %>
+        <% if role.errors[:name].any? %>
+          <div class="invalid-feedback">
+            <%= role.errors[:name].first %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :company, class: "form-label fw-semibold" %>
+        <%= form.text_field :company, class: "form-control #{'is-invalid' if role.errors[:company].any?}",
+                            placeholder: "Nome da empresa" %>
+        <% if role.errors[:company].any? %>
+          <div class="invalid-feedback">
+            <%= role.errors[:company].first %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label fw-semibold" %>
+    <%= form.text_area :description, class: "form-control #{'is-invalid' if role.errors[:description].any?}",
+                       rows: 4, placeholder: "Descrição detalhada da vaga e responsabilidades" %>
+    <% if role.errors[:description].any? %>
+      <div class="invalid-feedback">
+        <%= role.errors[:description].first %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :location, class: "form-label fw-semibold" %>
+        <%= form.text_field :location, class: "form-control #{'is-invalid' if role.errors[:location].any?}",
+                            placeholder: "Ex: São Paulo, SP ou Remoto" %>
+        <% if role.errors[:location].any? %>
+          <div class="invalid-feedback">
+            <%= role.errors[:location].first %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :salary, class: "form-label fw-semibold" %>
+        <%= form.text_field :salary, class: "form-control #{'is-invalid' if role.errors[:salary].any?}",
+                            placeholder: "Ex: 5.000 - 8.000 ou A combinar" %>
+        <% if role.errors[:salary].any? %>
+          <div class="invalid-feedback">
+            <%= role.errors[:salary].first %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :contact, class: "form-label fw-semibold" %>
+        <%= form.text_field :contact, class: "form-control #{'is-invalid' if role.errors[:contact].any?}",
+                            placeholder: "Nome ou departamento para contato" %>
+        <% if role.errors[:contact].any? %>
+          <div class="invalid-feedback">
+            <%= role.errors[:contact].first %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :email, class: "form-label fw-semibold" %>
+        <%= form.email_field :email, class: "form-control #{'is-invalid' if role.errors[:email].any?}",
+                             placeholder: "vagas@empresa.com" %>
+        <% if role.errors[:email].any? %>
+          <div class="invalid-feedback">
+            <%= role.errors[:email].first %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :requirements, class: "form-label fw-semibold" %>
+    <%= form.text_area :requirements, class: "form-control #{'is-invalid' if role.errors[:requirements].any?}",
+                       rows: 3, placeholder: "Requisitos necessários para a vaga" %>
+    <% if role.errors[:requirements].any? %>
+      <div class="invalid-feedback">
+        <%= role.errors[:requirements].first %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :benefits, class: "form-label fw-semibold" %>
+    <div class="row">
+      <% Role::POSSIBLE_BENEFITS.each_with_index do |benefit, index| %>
+        <div class="col-md-6 col-lg-4 mb-2">
+          <div class="form-check">
+            <%= form.check_box :benefits, { multiple: true, class: "form-check-input" }, benefit, nil %>
+            <%= form.label :benefits, benefit, class: "form-check-label" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% if role.errors[:benefits].any? %>
+      <div class="text-danger small mt-1">
+        <%= role.errors[:benefits].first %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :image, class: "form-label fw-semibold" %>
+    <%= form.file_field :image, class: "form-control #{'is-invalid' if role.errors[:image].any?}",
+                        accept: "image/*" %>
+    <div class="form-text">Logo da empresa ou imagem relacionada à vaga</div>
+    <% if role.errors[:image].any? %>
+      <div class="invalid-feedback">
+        <%= role.errors[:image].first %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-4">
+    <div class="form-check form-switch">
+      <%= form.check_box :published, class: "form-check-input" %>
+      <%= form.label :published, "Publicar vaga", class: "form-check-label" %>
+      <div class="form-text">Vagas publicadas ficam visíveis no site</div>
+    </div>
+  </div>
+
+  <div class="d-flex gap-2">
+    <%= form.submit role.persisted? ? "Atualizar Vaga" : "Criar Vaga",
+                    class: "btn btn-primary" %>
+    <%= link_to "Cancelar", admin_roles_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>
+

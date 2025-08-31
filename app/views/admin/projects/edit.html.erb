@@ -1,0 +1,23 @@
+<% content_for :page_title, "Editar Projeto" %>
+<% content_for :breadcrumb do %>
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><%= link_to "Dashboard", admin_root_path %></li>
+		<li class="breadcrumb-item"><%= link_to "Projetos", admin_projects_path %></li>
+		<li class="breadcrumb-item"><%= link_to @project.name, admin_project_path(@project) %></li>
+		<li class="breadcrumb-item active">Editar</li>
+	</ol>
+<% end %>
+
+<div class="row justify-content-center">
+	<div class="col-md-8">
+		<div class="card">
+			<div class="card-header">
+				<h5 class="mb-0">Editar Projeto</h5>
+			</div>
+			<div class="card-body">
+				<%= render "form", project: @project %>
+			</div>
+		</div>
+	</div>
+</div>
+

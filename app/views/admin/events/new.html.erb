@@ -1,0 +1,21 @@
+<% content_for :page_title, "Novo Evento" %>
+<% content_for :breadcrumb do %>
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><%= link_to "Dashboard", admin_root_path %></li>
+		<li class="breadcrumb-item"><%= link_to "Eventos", admin_events_path %></li>
+		<li class="breadcrumb-item active">Novo Evento</li>
+	</ol>
+<% end %>
+
+<div class="row justify-content-center">
+	<div class="col-md-8">
+		<div class="card">
+			<div class="card-header">
+				<h5 class="mb-0">Criar Novo Evento</h5>
+			</div>
+			<div class="card-body">
+				<%= render "form", event: @event %>
+			</div>
+		</div>
+	</div>
+</div>

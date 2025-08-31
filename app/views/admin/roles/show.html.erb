@@ -1,0 +1,113 @@
+<% content_for :page_title, @role.name %>
+<% content_for :breadcrumb do %>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Dashboard", admin_root_path %></li>
+    <li class="breadcrumb-item"><%= link_to "Vagas", admin_roles_path %></li>
+    <li class="breadcrumb-item active"><%= @role.name %></li>
+  </ol>
+<% end %>
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Detalhes da Vaga</h5>
+        <div class="btn-group">
+          <%= link_to edit_admin_role_path(@role), class: "btn btn-outline-primary btn-sm" do %>
+            <i class="bi bi-pencil me-2"></i>Editar
+          <% end %>
+          <%= link_to admin_role_path(@role), method: :delete,
+                      data: { confirm: "Tem certeza que deseja excluir esta vaga?" },
+                      class: "btn btn-outline-danger btn-sm" do %>
+            <i class="bi bi-trash me-2"></i>Excluir
+          <% end %>
+        </div>
+      </div>
+      <div class="card-body">
+        <% if @role.image.attached? %>
+          <div class="mb-4 text-center">
+            <%= image_tag @role.image, class: "img-fluid rounded", style: "max-height: 200px;" %>
+          </div>
+        <% end %>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Empresa</label>
+            <p><%= @role.company %></p>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Salário</label>
+            <p><span class="badge bg-warning text-dark fs-6"><%= @role.formatted_salary %></span></p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Descrição</label>
+          <p><%= simple_format(@role.description) %></p>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Requisitos</label>
+          <p><%= simple_format(@role.requirements) %></p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Local</label>
+            <p><i class="bi bi-geo-alt me-2"></i><%= @role.location %></p>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Contato</label>
+            <p>
+              <i class="bi bi-person me-2"></i><%= @role.contact %><br>
+              <i class="bi bi-envelope me-2"></i><%= @role.email %>
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Benefícios</label>
+          <div class="d-flex flex-wrap gap-2">
+            <% @role.benefits.each do |benefit| %>
+              <span class="badge bg-info"><%= benefit %></span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h6 class="mb-0">Informações</h6>
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Status</label>
+          <div>
+            <% if @role.published? %>
+              <span class="badge bg-success">Publicada</span>
+            <% else %>
+              <span class="badge bg-secondary">Rascunho</span>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Criado por</label>
+          <p class="mb-0"><%= @role.creator.display_name %></p>
+          <small class="text-muted"><%= @role.created_at.strftime('%d/%m/%Y às %H:%M') %></small>
+        </div>
+
+        <% if @role.updated_at != @role.created_at %>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Última atualização</label>
+            <p class="mb-0"><small class="text-muted"><%= @role.updated_at.strftime('%d/%m/%Y às %H:%M') %></small></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

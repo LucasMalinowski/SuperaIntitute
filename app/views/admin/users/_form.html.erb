@@ -1,0 +1,118 @@
+<%= form_with(model: [:admin, user], local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div class="alert alert-danger">
+      <h6><i class="bi bi-exclamation-triangle me-2"></i>Corrija os seguintes erros:</h6>
+      <ul class="mb-0">
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :name, class: "form-label fw-semibold" %>
+        <%= form.text_field :name, class: "form-control #{'is-invalid' if user.errors[:name].any?}",
+                            placeholder: "Nome completo" %>
+        <% if user.errors[:name].any? %>
+          <div class="invalid-feedback">
+            <%= user.errors[:name].first %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :email, class: "form-label fw-semibold" %>
+        <%= form.email_field :email, class: "form-control #{'is-invalid' if user.errors[:email].any?}",
+                             placeholder: "email@exemplo.com" %>
+        <% if user.errors[:email].any? %>
+          <div class="invalid-feedback">
+            <%= user.errors[:email].first %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :role, class: "form-label fw-semibold" %>
+    <%= form.select :role, options_for_select([['Usuário', 'user'], ['Administrador', 'admin']], user.role),
+                    { prompt: 'Selecione um papel' },
+                    { class: "form-select #{'is-invalid' if user.errors[:role].any?}" } %>
+    <% if user.errors[:role].any? %>
+      <div class="invalid-feedback">
+        <%= user.errors[:role].first %>
+      </div>
+    <% end %>
+  </div>
+
+  <% unless user.persisted? %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <%= form.label :password, class: "form-label fw-semibold" %>
+          <%= form.password_field :password, class: "form-control #{'is-invalid' if user.errors[:password].any?}",
+                                  placeholder: "Mínimo 6 caracteres" %>
+          <% if user.errors[:password].any? %>
+            <div class="invalid-feedback">
+              <%= user.errors[:password].first %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <%= form.label :password_confirmation, class: "form-label fw-semibold" %>
+          <%= form.password_field :password_confirmation, class: "form-control #{'is-invalid' if user.errors[:password_confirmation].any?}",
+                                  placeholder: "Confirme a senha" %>
+          <% if user.errors[:password_confirmation].any? %>
+            <div class="invalid-feedback">
+              <%= user.errors[:password_confirmation].first %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="alert alert-info">
+      <i class="bi bi-info-circle me-2"></i>
+      Para alterar a senha, deixe os campos em branco para manter a senha atual.
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <%= form.label :password, "Nova senha (opcional)", class: "form-label fw-semibold" %>
+          <%= form.password_field :password, class: "form-control #{'is-invalid' if user.errors[:password].any?}",
+                                  placeholder: "Deixe em branco para não alterar" %>
+          <% if user.errors[:password].any? %>
+            <div class="invalid-feedback">
+              <%= user.errors[:password].first %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <%= form.label :password_confirmation, "Confirmar nova senha", class: "form-label fw-semibold" %>
+          <%= form.password_field :password_confirmation, class: "form-control #{'is-invalid' if user.errors[:password_confirmation].any?}",
+                                  placeholder: "Confirme a nova senha" %>
+          <% if user.errors[:password_confirmation].any? %>
+            <div class="invalid-feedback">
+              <%= user.errors[:password_confirmation].first %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="d-flex gap-2">
+    <%= form.submit user.persisted? ? "Atualizar Usuário" : "Criar Usuário",
+                    class: "btn btn-primary" %>
+    <%= link_to "Cancelar", admin_users_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

@@ -15,6 +15,18 @@
       <% @events&.each do |event| %>
         <div class="col-sm-6 col-lg-4">
           <div class="card h-100 border-0 shadow-sm bg-white">
+            <!-- Event Image (First image found) -->
+            <% if event.images.attached? %>
+              <% first_image = event.images.find { |img| img.blob.content_type.start_with?("image/") } %>
+              <% if first_image %>
+                <div class="position-relative overflow-hidden" style="height: 200px;">
+                  <%= image_tag first_image,
+                                class: "card-img-top w-100 h-100",
+                                style: "object-fit: cover;" %>
+                </div>
+              <% end %>
+            <% end %>
+
             <div class="card-body p-4">
               <h3 class="card-title h5 fw-bold text-dark mb-3 lh-base"><%= event.name %></h3>
               <div class="mb-3">
@@ -39,7 +51,7 @@
 
         <!-- Modal -->
         <div class="modal fade" id="eventModal<%= event.id %>" tabindex="-1" aria-labelledby="eventModalLabel<%= event.id %>" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow">
               <div class="modal-header border-0 pb-2 bg-secondary-custom">
                 <h5 class="modal-title fw-bold text-dark" id="eventModalLabel<%= event.id %>"><%= event.name %></h5>
@@ -64,7 +76,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="mb-0">
+                <div class="mb-3">
                   <div class="d-flex align-items-start">
                     <i class="fas fa-info-circle text-primary-custom me-3 mt-1 flex-shrink-0"></i>
                     <div>
@@ -73,6 +85,92 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- Images/Videos Carousel -->
+                <% if event.images.attached? && event.images.count > 0 %>
+                  <div class="mb-3">
+                    <div class="d-flex align-items-start">
+                      <i class="fas fa-images text-primary-custom me-3 mt-1 flex-shrink-0"></i>
+                      <div class="w-100">
+                        <strong class="text-dark d-block small mb-2">Mídia:</strong>
+
+                        <% if event.images.count == 1 %>
+                          <!-- Single image/video - no carousel needed -->
+                          <% media = event.images.first %>
+                          <div class="text-center">
+                            <% if media.blob.content_type.start_with?("image/") %>
+                              <%= image_tag media, class: "img-fluid rounded", style: "max-height: 300px;" %>
+                            <% elsif media.blob.content_type.start_with?("video/") %>
+                              <%= video_tag url_for(media),
+                                            controls: true,
+                                            preload: "metadata",
+                                            class: "rounded",
+                                            style: "max-height: 300px; max-width: 100%;" %>
+                            <% end %>
+                          </div>
+                        <% else %>
+                          <!-- Multiple images/videos - use carousel -->
+                          <div id="eventCarousel<%= event.id %>" class="carousel slide" data-bs-ride="carousel">
+                            <!-- Carousel Indicators -->
+                            <div class="carousel-indicators">
+                              <% event.images.each_with_index do |media, index| %>
+                                <button type="button"
+                                        data-bs-target="#eventCarousel<%= event.id %>"
+                                        data-bs-slide-to="<%= index %>"
+                                        <%= 'class="active" aria-current="true"'.html_safe if index == 0 %>
+                                        aria-label="Slide <%= index + 1 %>"></button>
+                              <% end %>
+                            </div>
+
+                            <!-- Carousel Items -->
+                            <div class="carousel-inner rounded">
+                              <% event.images.each_with_index do |media, index| %>
+                                <div class="carousel-item <%= 'active' if index == 0 %>">
+                                  <div class="d-flex justify-content-center align-items-center" style="height: 300px; background-color: #f8f9fa;">
+                                    <% if media.blob.content_type.start_with?("image/") %>
+                                      <%= image_tag media,
+                                                    class: "d-block img-fluid",
+                                                    style: "max-height: 100%; max-width: 100%; object-fit: contain;" %>
+                                    <% elsif media.blob.content_type.start_with?("video/") %>
+                                      <%= video_tag url_for(media),
+                                                    controls: true,
+                                                    preload: "metadata",
+                                                    style: "max-height: 100%; max-width: 100%;" %>
+                                    <% end %>
+                                  </div>
+                                </div>
+                              <% end %>
+                            </div>
+
+                            <!-- Carousel Controls -->
+                            <button class="carousel-control-prev" type="button" data-bs-target="#eventCarousel<%= event.id %>" data-bs-slide="prev"
+                                    style="width: 30px; height: 30px; background: rgba(248,249,250,0.9); border-radius: 50%;
+                                      position: absolute; top: 50%; left: 15px; transform: translateY(-50%);
+                                      border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+                              <i class="fas fa-chevron-left" style="color: #333; font-size: 18px;"></i>
+                              <span class="visually-hidden">Anterior</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#eventCarousel<%= event.id %>" data-bs-slide="next"
+                                    style="width: 30px; height: 30px; background: rgba(248,249,250,0.9); border-radius: 50%;
+                                      position: absolute; top: 50%; right: 15px; transform: translateY(-50%);
+                                      border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+                              <i class="fas fa-chevron-right" style="color: #333; font-size: 18px;"></i>
+                              <span class="visually-hidden">Próximo</span>
+                            </button>
+
+                            <!-- Media counter -->
+                            <div class="position-absolute top-0 end-0 m-2">
+                              <span class="badge bg-dark bg-opacity-75 rounded-pill">
+                                <i class="fas fa-images me-1"></i>
+                                <%= event.images.count %>
+                              </span>
+                            </div>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
               </div>
               <div class="modal-footer border-0 bg-secondary-custom">
                 <button type="button" class="btn btn-secondary btn-sm rounded-pill" data-bs-dismiss="modal">Fechar</button>

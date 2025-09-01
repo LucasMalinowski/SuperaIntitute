@@ -132,18 +132,6 @@
     <% end %>
   </div>
 
-  <div class="mb-3">
-    <%= form.label :image, class: "form-label fw-semibold" %>
-    <%= form.file_field :image, class: "form-control #{'is-invalid' if role.errors[:image].any?}",
-                        accept: "image/*" %>
-    <div class="form-text">Logo da empresa ou imagem relacionada à vaga</div>
-    <% if role.errors[:image].any? %>
-      <div class="invalid-feedback">
-        <%= role.errors[:image].first %>
-      </div>
-    <% end %>
-  </div>
-
   <div class="mb-4">
     <div class="form-check form-switch">
       <%= form.check_box :published, class: "form-check-input" %>

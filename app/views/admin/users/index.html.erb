@@ -33,7 +33,7 @@
 					<% @users.each do |user| %>
 						<tr>
 							<td>
-								<strong><%= "#{user.display_name}" "#{current_user == user ? " ](Você)": ""}" %></strong>
+								<strong><%= "#{user.display_name}" "#{current_user == user ? " (Você)": ""}" %></strong>
 							</td>
 							<td><%= user.email %></td>
 							<td>
